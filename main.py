@@ -131,7 +131,7 @@ def wikipedia2dbpedia(wikipedia_url):
     else:
         return results["results"]["bindings"][0]["url"]["value"]
 
-@bottle.route("/"):
+@bottle.route("/")
 def index():
     # if __name__ == "__main__":
         default_questions = [
