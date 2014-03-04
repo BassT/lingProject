@@ -133,7 +133,7 @@ def wikipedia2dbpedia(wikipedia_url):
 
 @bottle.route("/"):
 def index():
-    if __name__ == "__main__":
+    # if __name__ == "__main__":
         default_questions = [
             "What is a car?",
             "Who is Tom Cruise?",
