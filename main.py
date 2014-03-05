@@ -46,13 +46,31 @@ def index():
 def question(q):
     yield u"<p>This example converts the question " + q + u"to a SPARQL query using <a href=\"http://quepy.machinalis.com/\">quepy</a>, queries dbpedia and returns the results (the RDF literals retrieved by rdfs:comment).</p>"
     target, query, metadata = dbpedia.get_query(q)
+    if isinstance(metadata, tuple):
+            query_type = metadata[0]
+            metadata = metadata[1]
+    else:
+            query_type = metadata
+            metadata = None
+    if query is None:
+        yield u"<p>Query not generated :(</p>"
+   
     yield u"<p>" + query + u"</p>"
-    sparql.setQuery(query)
-    sparql.setReturnFormat(JSON)
-    results = sparql.query().convert()
+    
+    if target.startswith("?"):
+            target = target[1:]
+    if query:
+            sparql.setQuery(query)
+            sparql.setReturnFormat(JSON)
+            results = sparql.query().convert()
 
+            if not results["results"]["bindings"]:
+                yield u"<p>No answer found :(</p>"
+        
+       
     for result in results["results"]["bindings"]:
         yield "<p>" + result["x1"]["value"] + "</p>"
     return
+   
 bottle.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
 
