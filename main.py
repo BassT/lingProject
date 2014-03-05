@@ -32,6 +32,7 @@ bottle.debug(True)
 @bottle.route("/")
 def index():
     yield u"<p>Here is a <a href=\"http://bottlepy.org/\">bottle</a> app under construction. This example converts the question 'What is a blowtorch?' to a SPARQL query using <a href=\"http://quepy.machinalis.com/\">quepy</a>, queries dbpedia and returns the results (the RDF literals retrieved by rdfs:comment).</p>"
+    yield u"Try your own question like this: <a href=\"http://pacific-river-6269.herokuapp.com/question/Who is Arnold Schwarzenegger?\">http://pacific-river-6269.herokuapp.com/question/Who is Arnold Schwarzenegger?</a>"
     target, query, metadata = dbpedia.get_query("what is a blowtorch?")
     yield u"<p>" + query + u"</p>"
     sparql.setQuery(query)
