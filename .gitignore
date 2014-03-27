@@ -1,2 +1,5 @@
 *.pyc
 /lingProjectEnv
+.project
+.pydevproject
+.settings/
