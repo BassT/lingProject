@@ -27,7 +27,7 @@ sparql = SPARQLWrapper("http://dbpedia.org/sparql")
 dbpedia = quepy.install("dbpedia")
 bottle.debug(True)
 
-# quepy.set_loglevel("DEBUG")
+quepy.set_loglevel("DEBUG")
 
 @bottle.route("/")
 def index():
@@ -70,7 +70,7 @@ def question(q):
         
        
     for result in results["results"]["bindings"]:
-        yield "<p>" + result["x1"]["value"] + "</p>"
+        yield "<p>" + result[target]["value"] + "</p>"
     return
    
 #   @get("/tryqustion") # or @route('/login')

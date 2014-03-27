@@ -193,3 +193,15 @@ class IsBook(FixedType):
 class LocationOf(FixedRelation):
     relation = "dbpedia-owl:location"
     reverse = True
+
+# ============================================ #
+#                                              #
+#    Domain specific language for company      #
+#                                              #
+# ============================================ #
+
+class IsCompany(FixedType):
+    fixedtype = "dbpedia-owl:Company"
+    
+
+
