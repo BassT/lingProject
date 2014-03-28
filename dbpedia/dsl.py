@@ -63,6 +63,7 @@ class DefinitionOf(FixedRelation):
 
 class LabelOf(FixedRelation):
     relation = "rdfs:label"
+    language = "en"
     reverse = True
 
 
@@ -195,13 +196,13 @@ class LocationOf(FixedRelation):
     reverse = True
 
 # ============================================ #
-#                                              #
 #    Domain specific language for company      #
-#                                              #
 # ============================================ #
 
 class IsCompany(FixedType):
     fixedtype = "dbpedia-owl:Company"
     
+class OwnedBy(FixedRelation):
+    relation = "dbpedia-owl:owningCompany"
 
 

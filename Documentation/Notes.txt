@@ -1,0 +1,68 @@
+==============
+Domain company
+==============
+
+SPARQL query for "Which companies are owned by Google?"::
+
+  PREFIX owl: <http://www.w3.org/2002/07/owl#>
+  PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+  PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+  PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+  PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+  PREFIX quepy: <http://www.machinalis.com/quepy#>
+  PREFIX dbpedia: <http://dbpedia.org/ontology/>
+  PREFIX dbpprop: <http://dbpedia.org/property/>
+  PREFIX dbpedia-owl: <http://dbpedia.org/ontology/>
+  
+  SELECT DISTINCT ?x2 WHERE {
+    ?x1 rdfs:label ?x2.
+    { ?x1 dbpedia-owl:owningCompany ?x0 } UNION {  ?x1 dbpedia-owl:parentCompany ?x0 }.
+    ?x0 rdf:type dbpedia-owl:Company.
+    ?x0 rdfs:label "Google"@en.
+  
+    FILTER (lang(?x2) = 'en')
+  
+  }
+
+Question template::
+
+  regex = Pos("WDT") + Lemma("company") + Lemma("be") + Lemma("own") + Pos("IN") + Group(Pos("NNP"), 'company')
+
+  
+
+
+Result:
+
++------------------------+
+|           x2			 |
++========================+
+|"Pyra Labs"@en			 |
++------------------------+
+|"Neotonic Software"@en	 |
++------------------------+
+|"Dodgeball (service)"@en|
++------------------------+
+|"Slide.com"@en			 |
++------------------------+
+|"Picnik"@en			 |
++------------------------+
+|"Google Energy"@en		 |
++------------------------+
+|"AdMob"@en				 |
++------------------------+
+|"Google China"@en		 |
++------------------------+
+|"Google Ventures"@en	 |
++------------------------+
+|"ITA Software"@en		 |
++------------------------+
+|"Motorola Mobility"@en	 |
++------------------------+
+|"On2 Technologies"@en	 |
++------------------------+
+|"BufferBox"@en			 |
++------------------------+
+
+
+
+
