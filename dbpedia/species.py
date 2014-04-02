@@ -13,7 +13,7 @@ Species related regex.
 from refo import Question, Group
 from quepy.dsl import HasKeyword
 from quepy.parsing import Lemma, Lemmas, Pos, QuestionTemplate
-from dbpedia.dsl import IsSpecies, DefinitionOf, FiberOf, CarbsOf, FatOf, ProteinOf, SugarOf
+from dbpedia.dsl import IsSpecies, DefinitionOf, FiberOf, CarbsOf, FatOf, ProteinOf, SugarOf, IngredientOf, LabelOf
 
 
 """
@@ -106,3 +106,18 @@ class SugarOfQuestion(QuestionTemplate):
         species = IsSpecies()+ HasKeyword(name)
         suger = SugarOf(species)
         return suger, "enum"
+    
+class IngredientOfQuestion(QuestionTemplate):
+    """
+    Ex: "what type of food uses Apple as an ingredient?"
+        "what kind of food uses Apple as an ingredient?"
+    """
+
+    regex = (Lemmas("what type") | Lemmas("what kind")) + Pos("IN") + Lemma("food") + Lemma("use") + Group(Pos("NNP"), 'species') + Pos("IN") + Lemma("ingredient") + Question(Pos("."))
+    
+    def interpret(self, match):
+        name = match.species.tokens
+        species = IsSpecies()+ HasKeyword(name)
+        Ingredient = IngredientOf(species)
+        label = LabelOf(Ingredient)
+        return label, "enum"

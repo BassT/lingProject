@@ -231,3 +231,7 @@ class ProteinOf(FixedRelation):
 class SugarOf(FixedRelation):
     relation = "dbpprop:sugars"
     reverse = True
+
+class IngredientOf(FixedRelation):
+    relation = "dbpedia-owl:ingredient"
+   
