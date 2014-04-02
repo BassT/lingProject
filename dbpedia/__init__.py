@@ -19,3 +19,4 @@ from country import *
 from tvshows import *
 from writers import *
 from company import *
+from species import *

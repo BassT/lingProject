@@ -205,4 +205,15 @@ class IsCompany(FixedType):
 class OwnedBy(FixedRelation):
     relation = "dbpedia-owl:owningCompany"
 
+# ============================================ #
+#    Domain specific language for Species      #
+# ============================================ #
+
+class IsSpecies(FixedType):
+    fixedtype = "dbpedia-owl:Species"
+
+
+class FiberOf(FixedRelation):
+    relation = "dbpprop:fiber" 
+    reverse = True
 
