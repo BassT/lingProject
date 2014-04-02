@@ -212,8 +212,22 @@ class OwnedBy(FixedRelation):
 class IsSpecies(FixedType):
     fixedtype = "dbpedia-owl:Species"
 
-
 class FiberOf(FixedRelation):
     relation = "dbpprop:fiber" 
     reverse = True
+    
+class CarbsOf(FixedRelation):
+    relation = "dbpprop:carbs" 
+    reverse = True
 
+class FatOf(FixedRelation):
+    relation = "dbpprop:fat" 
+    reverse = True
+    
+class ProteinOf(FixedRelation):
+    relation = "dbpprop:protein"
+    reverse = True
+    
+class SugarOf(FixedRelation):
+    relation = "dbpprop:sugars"
+    reverse = True
