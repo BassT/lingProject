@@ -1,0 +1,247 @@
+==============
+Domain Species
+==============
+
+SPARQL query for "How much fiber in an Apple?"
+                 "How much fiber an Apple have"
+                 "Do Apple have fiber"
+
+  PREFIX owl: <http://www.w3.org/2002/07/owl#>
+  PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+  PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+  PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+  PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+  PREFIX quepy: <http://www.machinalis.com/quepy#>
+  PREFIX dbpedia: <http://dbpedia.org/ontology/>
+  PREFIX dbpprop: <http://dbpedia.org/property/>
+  PREFIX dbpedia-owl: <http://dbpedia.org/ontology/>
+  
+  SELECT DISTINCT ?x1 WHERE {
+     ?x0 rdf:type dbpedia-owl:Species. ?x0 rdfs:label "Apple"@en. ?x0 dbpprop:fiber ?x1. } 
+
+Question template:
+
+    regex =   (Lemmas("how much") + Lemma("fiber") + Pos("IN") + Pos("DT") + Group(Pos("NNP"), 'species') + Question(Pos("."))) | \
+              (Lemmas("how much") + Lemma("fiber") + Pos("DT") + Group(Pos("NNP"), 'species') + Lemma("have") + Question(Pos("."))) | \
+              (Lemma("do") + Group(Pos("NNP"), 'species') + Lemma("have") + Lemma("fiber") + Question(Pos(".")))  
+
+Result:
+
++------------------------+
+|           x1           |
++========================+
+|"2.4"  		 |
++------------------------+
+
+------------------------------------------------------------------------------------------------------------------------
+
+SPARQL query for "How much carbs in an Apple?"
+                 "How much carbs an Apple have?"
+                 "Do Apple have carbs?"
+
+  PREFIX owl: <http://www.w3.org/2002/07/owl#>
+  PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+  PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+  PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+  PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+  PREFIX quepy: <http://www.machinalis.com/quepy#>
+  PREFIX dbpedia: <http://dbpedia.org/ontology/>
+  PREFIX dbpprop: <http://dbpedia.org/property/>
+  PREFIX dbpedia-owl: <http://dbpedia.org/ontology/>
+  
+  SELECT DISTINCT ?x1 WHERE { 
+    ?x0 rdf:type dbpedia-owl:Species. ?x0 rdfs:label "Apple"@en. ?x0 dbpprop:carbs ?x1. } 
+
+Question template:
+
+    regex =   Lemmas("how much") + Lemma("carbs") + Pos("IN") + Pos("DT") + Group(Pos("NNP"), 'species') + Question(Pos(".")) | \
+             (Lemmas("how much") + Lemma("carbs") + Pos("DT") + Group(Pos("NNP"), 'species') + Lemma("have") + Question(Pos("."))) | \
+             (Lemma("do") + Group(Pos("NNP"), 'species') + Lemma("have") + Lemma("carbs") + Question(Pos("."))) 
+
+Result:
+
++------------------------+
+|           x1           |
++========================+
+|"13.81"  		 |
++------------------------+  
+
+------------------------------------------------------------------------------------------------------------------------
+
+SPARQL query for "How much fat in an Apple?"
+                 "How much fat an Apple have?"
+                 "Do Apple have fat?"
+
+  PREFIX owl: <http://www.w3.org/2002/07/owl#>
+  PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+  PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+  PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+  PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+  PREFIX quepy: <http://www.machinalis.com/quepy#>
+  PREFIX dbpedia: <http://dbpedia.org/ontology/>
+  PREFIX dbpprop: <http://dbpedia.org/property/>
+  PREFIX dbpedia-owl: <http://dbpedia.org/ontology/>
+  
+  SELECT DISTINCT ?x1 WHERE { 
+    ?x0 rdf:type dbpedia-owl:Species. ?x0 rdfs:label "Apple"@en. ?x0 dbpprop:fat ?x1. } 
+
+Question template:
+
+    regex =   Lemmas("how much") + Lemma("fat") + Pos("IN") + Pos("DT") + Group(Pos("NNP"), 'species') + Question(Pos(".")) | \
+             (Lemmas("how much") + Lemma("fat") + Pos("DT") + Group(Pos("NNP"), 'species') + Lemma("have") + Question(Pos("."))) | \
+             (Lemma("do") + Group(Pos("NNP"), 'species') + Lemma("have") + Lemma("fat") + Question(Pos(".")))  
+Result:
+
++------------------------+
+|           x1           |
++========================+
+|"0.17"  		 |
++------------------------+  
+
+------------------------------------------------------------------------------------------------------------------------
+
+SPARQL query for "How much protein in an Apple?"
+                 "How much protein an Apple have?"
+                 "Do Apple have protein?"
+
+  PREFIX owl: <http://www.w3.org/2002/07/owl#>
+  PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+  PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+  PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+  PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+  PREFIX quepy: <http://www.machinalis.com/quepy#>
+  PREFIX dbpedia: <http://dbpedia.org/ontology/>
+  PREFIX dbpprop: <http://dbpedia.org/property/>
+  PREFIX dbpedia-owl: <http://dbpedia.org/ontology/>
+  
+  SELECT DISTINCT ?x1 WHERE { 
+    ?x0 rdf:type dbpedia-owl:Species. ?x0 rdfs:label "Apple"@en. ?x0 dbpprop:protein ?x1. } 
+
+Question template:
+
+    regex =   Lemmas("how much") + Lemma("protein") + Pos("IN") + Pos("DT") + Group(Pos("NNP"), 'species') + Question(Pos(".")) | \
+             (Lemmas("how much") + Lemma("protein") + Pos("DT") + Group(Pos("NNP"), 'species') + Lemma("have") + Question(Pos("."))) | \
+             (Lemma("do") + Group(Pos("NNP"), 'species') + Lemma("have") + Lemma("protein") + Question(Pos(".")))  
+    
+Result:
+
++------------------------+
+|           x1           |
++========================+
+|"0.26"  		 |
++------------------------+  
+
+------------------------------------------------------------------------------------------------------------------------
+
+SPARQL query for "How much sugar in an apple?"
+                 "How much sugar an Apple have?"
+                 "Do Apple have sugar?"
+        
+  PREFIX owl: <http://www.w3.org/2002/07/owl#>
+  PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+  PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+  PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+  PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+  PREFIX quepy: <http://www.machinalis.com/quepy#>
+  PREFIX dbpedia: <http://dbpedia.org/ontology/>
+  PREFIX dbpprop: <http://dbpedia.org/property/>
+  PREFIX dbpedia-owl: <http://dbpedia.org/ontology/>
+  
+  SELECT DISTINCT ?x1 WHERE { 
+    ?x0 rdf:type dbpedia-owl:Species. ?x0 rdfs:label "Apple"@en. ?x0 dbpprop:sugars ?x1. } 
+
+Question template:
+
+    regex =   Lemmas("how much") + Lemma("sugar") + Pos("IN") + Pos("DT") + Group(Pos("NNP"), 'species') + Question(Pos(".")) | \
+             (Lemmas("how much") + Lemma("sugar") + Pos("DT") + Group(Pos("NNP"), 'species') + Lemma("have") + Question(Pos("."))) | \
+             (Lemma("do") + Group(Pos("NNP"), 'species') + Lemma("have") + Lemma("sugar") + Question(Pos(".")))  
+    
+Result:
+
++------------------------+
+|           x1           |
++========================+
+|"10.39"  		 |
++------------------------+ 
+
+------------------------------------------------------------------------------------------------------------------------
+
+SPARQL query for "what type of food uses Apple as ingredient?"
+                 "what kind of food uses Apple as ingredient?"
+                 "what food uses Apple as ingredient?"
+                 "list food uses Apple as ingredient?"
+        
+  PREFIX owl: <http://www.w3.org/2002/07/owl#>
+  PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+  PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+  PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+  PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+  PREFIX quepy: <http://www.machinalis.com/quepy#>
+  PREFIX dbpedia: <http://dbpedia.org/ontology/>
+  PREFIX dbpprop: <http://dbpedia.org/property/>
+  PREFIX dbpedia-owl: <http://dbpedia.org/ontology/>
+  
+  SELECT DISTINCT ?x2 WHERE { 
+    ?x0 rdf:type dbpedia-owl:Species. ?x0 rdfs:label "Apple"@en. ?x1 dbpedia-owl:ingredient ?x0. ?x1 rdfs:label ?x2. 
+    FILTER (lang(?x2) = 'en') } 
+
+Question template:
+
+    regex =   (Lemmas("what type") | Lemmas("what kind")) + Pos("IN") + Lemma("food") + Lemma("use") + Group(Pos("NNP"), 'species') + Pos("IN") + Lemma("ingredient") + Question(Pos(".")) | \
+              (Question((Lemma("list")) | (Lemma("what")))+ Lemma("food") + Lemma("use") + Group(Pos("NNP"), 'species') + Pos("IN") + Lemma("ingredient") + Question(Pos(".")))
+        
+Result:
+
++--------------------------+ 
+|           x2             |
++==========================+
+|"Flaugnarde"@en           |
++--------------------------+ 
+|"Apple cake"@en           |
++--------------------------+ 
+|"Norman Tart"@en          |
++--------------------------+ 
+|"Prekmurska gibanica"@en  |
++--------------------------+ 
+|"Apple dumpling"@en       |
++--------------------------+ 
+|"Apple soup"@en           |
++--------------------------+ 
+|"Smulpaj"@en              |
++--------------------------+ 
+|"Torta alla Monferrina"@en|
++--------------------------+ 
+|"Depression cake"@en      |
++--------------------------+ 
+|"Pl?cint?"@en             |
++--------------------------+ 
+|"Tufahije"@en             |
++--------------------------+ 
+|"Waldorf salad"@en        |
++--------------------------+ 
+|"Eve's pudding"@en        |
++--------------------------+ 
+|"Caramel apple"@en        |
++--------------------------+ 
+|"Apple butter"@en         |
++--------------------------+ 
+|"Tarte Tatin"@en          |
++--------------------------+ 
+|"Jewish Apple Cake"@en    |
++--------------------------+ 
+|"Birnbrot"@en             |
++--------------------------+ 
+|"Squab pie"@en            |
++--------------------------+ 
+|"Apple strudel"@en        |
++--------------------------+ 
+|"Ghapama"@en              |
++--------------------------+ 
+|"Apple crisp"@en          |
++--------------------------+ 
+|"Brown Betty (dessert)"@en|
++--------------------------+ 
+|"Stack cake"@en           |
++--------------------------+ 
+|"Candy apple"@en          |
++--------------------------+  

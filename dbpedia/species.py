@@ -44,10 +44,14 @@ class WhatIs(QuestionTemplate):
 
 class FiberOfQuestion(QuestionTemplate):
     """
-    Ex: "How much fiber in an apple?"
+    Ex: "How much fiber in an Apple?"
+        "How much fiber an Apple have"
+        "Do Apple have fiber"
     """
 
-    regex = Lemmas("how much") + Lemma("fiber") + Pos("IN") + Pos("DT") + Group(Pos("NNP"), 'species') + Question(Pos("."))
+    regex = (Lemmas("how much") + Lemma("fiber") + Pos("IN") + Pos("DT") + Group(Pos("NNP"), 'species') + Question(Pos("."))) | \
+        (Lemmas("how much") + Lemma("fiber") + Pos("DT") + Group(Pos("NNP"), 'species') + Lemma("have") + Question(Pos("."))) | \
+        (Lemma("do") + Group(Pos("NNP"), 'species') + Lemma("have") + Lemma("fiber") + Question(Pos(".")))       
     
     def interpret(self, match):
         name = match.species.tokens
@@ -58,9 +62,13 @@ class FiberOfQuestion(QuestionTemplate):
 class CarbsOfQuestion(QuestionTemplate):
     """
     Ex: "How much carbs in an apple?"
+        "How much carbs an Apple have?"
+        "Do Apple have carbs?"
     """
 
-    regex = Lemmas("how much") + Lemma("carbs") + Pos("IN") + Pos("DT") + Group(Pos("NNP"), 'species') + Question(Pos("."))
+    regex = Lemmas("how much") + Lemma("carbs") + Pos("IN") + Pos("DT") + Group(Pos("NNP"), 'species') + Question(Pos(".")) | \
+        (Lemmas("how much") + Lemma("carbs") + Pos("DT") + Group(Pos("NNP"), 'species') + Lemma("have") + Question(Pos("."))) | \
+        (Lemma("do") + Group(Pos("NNP"), 'species') + Lemma("have") + Lemma("carbs") + Question(Pos(".")))   
     
     def interpret(self, match):
         name = match.species.tokens
@@ -71,9 +79,13 @@ class CarbsOfQuestion(QuestionTemplate):
 class FatOfQuestion(QuestionTemplate):
     """
     Ex: "How much fat in an apple?"
+        "How much fat an Apple have?"
+        "Do Apple have fat?"
     """
 
-    regex = Lemmas("how much") + Lemma("fat") + Pos("IN") + Pos("DT") + Group(Pos("NNP"), 'species') + Question(Pos("."))
+    regex = Lemmas("how much") + Lemma("fat") + Pos("IN") + Pos("DT") + Group(Pos("NNP"), 'species') + Question(Pos(".")) | \
+        (Lemmas("how much") + Lemma("fat") + Pos("DT") + Group(Pos("NNP"), 'species') + Lemma("have") + Question(Pos("."))) | \
+        (Lemma("do") + Group(Pos("NNP"), 'species') + Lemma("have") + Lemma("fat") + Question(Pos(".")))  
     
     def interpret(self, match):
         name = match.species.tokens
@@ -84,9 +96,13 @@ class FatOfQuestion(QuestionTemplate):
 class ProteinOfQuestion(QuestionTemplate):
     """
     Ex: "How much protein in an apple?"
+        "How much protein an Apple have?"
+        "Do Apple have protein?"
     """
 
-    regex = Lemmas("how much") + Lemma("protein") + Pos("IN") + Pos("DT") + Group(Pos("NNP"), 'species') + Question(Pos("."))
+    regex = Lemmas("how much") + Lemma("protein") + Pos("IN") + Pos("DT") + Group(Pos("NNP"), 'species') + Question(Pos(".")) | \
+        (Lemmas("how much") + Lemma("protein") + Pos("DT") + Group(Pos("NNP"), 'species') + Lemma("have") + Question(Pos("."))) | \
+        (Lemma("do") + Group(Pos("NNP"), 'species') + Lemma("have") + Lemma("protein") + Question(Pos(".")))  
     
     def interpret(self, match):
         name = match.species.tokens
@@ -96,10 +112,14 @@ class ProteinOfQuestion(QuestionTemplate):
     
 class SugarOfQuestion(QuestionTemplate):
     """
-    Ex: "How much sugar in an apple?"
+    Ex: "How much sugar in an Apple?"
+        "How much sugar an Apple have?"
+        "Do Apple have sugar?"
     """
 
-    regex = Lemmas("how much") + Lemma("suger") + Pos("IN") + Pos("DT") + Group(Pos("NNP"), 'species') + Question(Pos("."))
+    regex = Lemmas("how much") + Lemma("sugar") + Pos("IN") + Pos("DT") + Group(Pos("NNP"), 'species') + Question(Pos(".")) | \
+        (Lemmas("how much") + Lemma("sugar") + Pos("DT") + Group(Pos("NNP"), 'species') + Lemma("have") + Question(Pos("."))) | \
+        (Lemma("do") + Group(Pos("NNP"), 'species') + Lemma("have") + Lemma("sugar") + Question(Pos(".")))  
     
     def interpret(self, match):
         name = match.species.tokens
@@ -109,12 +129,15 @@ class SugarOfQuestion(QuestionTemplate):
     
 class IngredientOfQuestion(QuestionTemplate):
     """
-    Ex: "what type of food uses Apple as an ingredient?"
-        "what kind of food uses Apple as an ingredient?"
+    Ex: "what type of food uses Apple as ingredient?"
+        "what kind of food uses Apple as ingredient?"
+        "what food uses Apple as ingredient?"
+        "list food uses Apple as ingredient?"
     """
 
-    regex = (Lemmas("what type") | Lemmas("what kind")) + Pos("IN") + Lemma("food") + Lemma("use") + Group(Pos("NNP"), 'species') + Pos("IN") + Lemma("ingredient") + Question(Pos("."))
-    
+    regex = (Lemmas("what type") | Lemmas("what kind")) + Pos("IN") + Lemma("food") + Lemma("use") + Group(Pos("NNP"), 'species') + Pos("IN") + Lemma("ingredient") + Question(Pos(".")) | \
+        (Question((Lemma("list")) | (Lemma("what")))+ Lemma("food") + Lemma("use") + Group(Pos("NNP"), 'species') + Pos("IN") + Lemma("ingredient") + Question(Pos(".")))
+     
     def interpret(self, match):
         name = match.species.tokens
         species = IsSpecies()+ HasKeyword(name)
