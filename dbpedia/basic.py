@@ -90,12 +90,21 @@ class WhatTimeIs(QuestionTemplate):
 class WhereIsQuestion(QuestionTemplate):
     """
     Ex: "where in the world is the Eiffel Tower"
+        "Where is Jumeirah Beach Hotel?"
+        "Where is the location of Jumeirah Beach Hotel?"
+        "What is the location of Jumeirah Beach Hotel?"
+        "Show me the location of Jumeirah Beach Hotel?"
+        "Give me the location of Jumeirah Beach Hotel?"
     """
 
-    thing = Group(Plus(Pos("IN") | Pos("NP") | Pos("NNP") | Pos("NNPS")),
+    thing = Group(Plus(Pos("IN") | Pos("NP") | Pos("NNP") | Pos("NNPS")|Pos("CD") | Pos("JJ") |Pos("NNS") | Pos("DT") | Pos("NNP") | Pos("NNP")),
                   "thing")
-    regex = Lemma("where") + Question(Lemmas("in the world")) + Lemma("be") + \
-        Question(Pos("DT")) + thing + Question(Pos("."))
+              
+    regex = Lemma("where") + Question(Lemmas("in the world")) + Lemma("be") + Question(Pos("DT")) + thing + Question(Pos(".")) | \
+        (Lemma("where") + Lemma("be") + thing + Question(Pos("."))) | \
+        (Question(Lemmas("where be") | Lemmas("what be")) + Lemma("the") + Lemma("location") + Pos("IN") + thing + Question(Pos("."))) | \
+        (Question(Lemma("show")|Lemma("give")) + Lemma("me") + Lemma("the") + Lemma("location") + Pos("IN") + thing + Question(Pos("."))) 
+            
 
     def interpret(self, match):
         thing = HasKeyword(match.thing.tokens)
