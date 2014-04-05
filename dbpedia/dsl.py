@@ -193,6 +193,7 @@ class IsBook(FixedType):
 
 class LocationOf(FixedRelation):
     relation = "dbpedia-owl:location"
+    language = "en"
     reverse = True
 
 # ============================================ #
@@ -235,3 +236,75 @@ class SugarOf(FixedRelation):
 class IngredientOf(FixedRelation):
     relation = "dbpedia-owl:ingredient"
    
+# ============================================ #
+#    Domain specific language for Hotel        #
+# ============================================ #
+
+class IsHotel(FixedType):
+    fixedtype = "dbpedia-owl:Hotel"
+    
+class HotelNameIs(FixedRelation):
+    relation = "dbpedia-owl:hotelName"  
+    
+class NumOfRooms(FixedRelation):
+    relation = "dbpedia-owl:numberOfRooms"  
+    reverse = True
+    
+class NumOfRestaurants(FixedRelation):
+    relation = "dbpedia-owl:numberOfRestaurants"  
+    reverse = True
+    
+class OwnerOf(FixedRelation):
+    relation = "dbpedia-owl:owner" 
+    reverse = True
+    
+class OpeningDateOf(FixedRelation):
+    relation = "dbpprop:openingDate"  
+    reverse = True
+    
+class FloorCountOf(FixedRelation):
+    relation = "dbpedia-owl:floorCount"  
+    reverse = True
+    
+class ExternalLinkOf(FixedRelation):
+    relation = "dbpedia-owl:wikiPageExternalLink"  
+    reverse = True
+    
+# ============================================ #
+#    Domain specific language for University   #
+# ============================================ #
+
+class IsUniversity(FixedType):
+    fixedtype = "dbpedia-owl:University"
+    
+class GradStudentOf(FixedRelation):
+    relation = "dbpedia-owl:numberOfPostgraduateStudents"
+    reverse = True
+    
+class UnderGradStudentOf(FixedRelation):
+    relation = "dbpedia-owl:numberOfUndergraduateStudents"
+    reverse = True
+    
+class StaffOf(FixedRelation):
+    relation = "dbpedia-owl:staff"
+    reverse = True
+    
+class ColorOf(FixedRelation):
+    relation = "dbpedia-owl:officialSchoolColour"
+    reverse = True
+    
+class MottoOf(FixedRelation):
+    relation = "dbpprop:mottoeng"
+    reverse = True
+    
+class EstablishOf(FixedRelation):
+    relation = "dbpprop:established"
+    reverse = True
+    
+class NicknameOf(FixedRelation):
+    relation = "foaf:nick"
+    reverse = True
+    
+class UniversityOwnerOf(FixedRelation):
+    relation = "dbpedia-owl:owner"
+    

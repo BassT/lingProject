@@ -20,3 +20,6 @@ from tvshows import *
 from writers import *
 from company import *
 from species import *
+from hotel import *
+from university import *
+from NewBasic import *
