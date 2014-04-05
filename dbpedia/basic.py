@@ -30,13 +30,14 @@ class Thing(Particle):
     def interpret(self, match):
         return HasKeyword(match.words.tokens)
 
-
+"""
+********** Add WhatIs Question to NewBasic.py **********
 class WhatIs(QuestionTemplate):
-    """
+    
     Regex for questions like "What is a blowtorch
     Ex: "What is a car"
         "What is Seinfield?"
-    """
+    
 
     regex = Lemma("what") + Lemma("be") + Question(Pos("DT")) + \
         Thing() + Question(Pos("."))
@@ -45,7 +46,7 @@ class WhatIs(QuestionTemplate):
         label = DefinitionOf(match.thing)
 
         return label, "define"
-
+"""
 
 class ListEntity(QuestionTemplate):
     """
