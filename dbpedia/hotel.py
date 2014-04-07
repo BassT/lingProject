@@ -14,7 +14,7 @@ from refo import Question, Plus
 from quepy.dsl import HasKeyword
 from quepy.parsing import Lemma, Lemmas, Pos, QuestionTemplate, Particle
 from dbpedia.dsl import IsHotel, LocationOf, LabelOf, NumOfRooms, NumOfRestaurants, OwnerOf, \
-    OpeningDateOf, FloorCountOf, ExternalLinkOf
+    OpeningDateOf, FloorCountOf, ExternalLinkOf, NameOf
 
 
 class Hotel(Particle):
@@ -37,7 +37,7 @@ class ListHotelsQuestion(QuestionTemplate):
     
     def interpret(self, match):
         hotels = IsHotel()
-        return LabelOf(hotels), "enum"
+        return NameOf(hotels), "enum"
     
 """    
 
@@ -96,7 +96,7 @@ class OwnerOfQuestion(QuestionTemplate):
     
     def interpret(self, match):
         Owner = OwnerOf(match.hotel)
-        return LabelOf(Owner), "enum"
+        return NameOf(Owner), "enum"
 
     
 

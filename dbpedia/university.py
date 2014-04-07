@@ -14,7 +14,7 @@ from refo import Question, Plus
 from quepy.dsl import HasKeyword
 from quepy.parsing import Lemma, Lemmas, Pos, QuestionTemplate, Particle
 from dbpedia.dsl import IsUniversity, GradStudentOf, UnderGradStudentOf, StaffOf, \
-    ColorOf, MottoOf, EstablishOf, NicknameOf, UniversityOwnerOf, LabelOf
+    ColorOf, MottoOf, EstablishOf, NicknameOf, UniversityOwnerOf, LabelOf, NameOf
 
 
 class University(Particle):
@@ -28,8 +28,8 @@ class University(Particle):
     
 class ListUniversitiesQuestion(QuestionTemplate):
     """
-    Ex: "list all Universities?"
-        "list all Universities in dbpedia?"
+    Ex: "list all universities?"
+        "list all universities in dbpedia?"
     """
     
     regex = (Question(Lemma("list")) + Lemma("all") + Lemma("university") + Question(Pos("."))) | \
@@ -37,7 +37,7 @@ class ListUniversitiesQuestion(QuestionTemplate):
     
     def interpret(self, match):
         University = IsUniversity()
-        return University, "enum"
+        return LabelOf(University), "enum"
 
 
 class GradStudentQuestion(QuestionTemplate):
@@ -158,7 +158,7 @@ class UniversityOwnerOfQuestion(QuestionTemplate):
     Ex: "What does York University own?"
         "What does University of Toronto own?"
         "List some properties owned by Harvard University?"
-        "Some properties owned by McGill University"
+        "Some properties owned by McGill University?"
     """
 
     regex = (Lemmas("what do") + University() + Lemma("own") + Question(Pos("."))) | \
@@ -166,4 +166,4 @@ class UniversityOwnerOfQuestion(QuestionTemplate):
 
     def interpret(self, match):
         own = UniversityOwnerOf(match.university)
-        return LabelOf(own), "enum"
+        return NameOf(own), "enum"
