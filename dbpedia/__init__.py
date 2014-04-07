@@ -23,3 +23,4 @@ from species import *
 from hotel import *
 from university import *
 from NewBasic import *
+from language import *

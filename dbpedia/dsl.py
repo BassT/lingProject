@@ -157,7 +157,6 @@ class CreatorOf(FixedRelation):
 
 class NameOf(FixedRelation):
     relation = "foaf:name"
-    # relation = "dbpprop:name"
     reverse = True
 
 
@@ -308,3 +307,28 @@ class NicknameOf(FixedRelation):
 class UniversityOwnerOf(FixedRelation):
     relation = "dbpedia-owl:owner"
     
+# ============================================ #
+#    Domain specific language for Language     #
+# ============================================ #
+
+class IsLanguage(FixedType):
+    fixedtype = "dbpedia-owl:Language"
+    
+class SpeakersOf(FixedRelation):
+    relation = "dbpprop:speakers"
+    reverse = True
+    
+class SpokenIn(FixedRelation):
+    relation = "dbpedia-owl:spokenIn"
+    reverse = True
+    
+class LanguageFamilyOf(FixedRelation):
+    relation = "dbpedia-owl:languageFamily"
+    reverse = True
+    
+class OfficialLanguageOf(FixedRelation):
+    relation = "dbpprop:officialLanguages"
+    
+class CommonNameOf(FixedRelation):
+    relation = "dbpprop:commonName"
+    reverse = True
