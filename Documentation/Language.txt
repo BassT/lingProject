@@ -1,0 +1,237 @@
+===============
+Domain Language
+===============
+
+SPARQL query for "list all languages?"
+                 "list all languages in dbpedia?"
+
+  PREFIX owl: <http://www.w3.org/2002/07/owl#>
+  PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+  PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+  PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+  PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+  PREFIX quepy: <http://www.machinalis.com/quepy#>
+  PREFIX dbpedia: <http://dbpedia.org/ontology/>
+  PREFIX dbpprop: <http://dbpedia.org/property/>
+  PREFIX dbpedia-owl: <http://dbpedia.org/ontology/>
+  
+  SELECT DISTINCT ?x1 WHERE { 
+    ?x0 rdf:type dbpedia-owl:Language. ?x0 rdfs:label ?x1. 
+    FILTER (lang(?x1) = 'en')} 
+
+Question template:
+
+  regex =   (Question(Lemma("list")) + Lemma("all") + Lemma("language") + Question(Pos("."))) | \
+            (Question(Lemma("list")) + Lemma("all") + Lemma("language") + Pos("IN") + Lemma("dbpedia") + Question(Pos("."))) 
+    
+Result:
+
++----------------------------------------------+
+|                     x1                       |
++==============================================+
+|"Afshar language"@en                          |
++----------------------------------------------+
+|"Angolar language"@en                         |
++----------------------------------------------+
+|"Arvanitika"@en                               |   
++----------------------------------------------+
+|"Asturian language"@en                        |
++----------------------------------------------+
+|"Austrian German"@en                          |
++----------------------------------------------+
+|"Bari language"@en                            |
++----------------------------------------------+
+|"Bodo language"@en                            |
++----------------------------------------------+
+|"Bohemian Romani"@en                          |
++----------------------------------------------+
+|"Budukh language"@en                          |
++----------------------------------------------+
+|"Burushaski"@en                               |
++----------------------------------------------+
+|"Canadian French"@en                          |
++----------------------------------------------+
+|"Cantonese"@en                                |
++----------------------------------------------+
+|"Chagatai language"@en                        |
++----------------------------------------------+
+|"Chipaya language"@en                         |
++----------------------------------------------+
+|"Colonia Tovar dialect"@en                    |
++----------------------------------------------+
+|"Comanche language"@en                        |
++----------------------------------------------+
+
+------------------------------------------------------------------------------------------------------------------------
+
+SPARQL query for "How many people speaks English language?"
+                 "How many people speak Canadian French?"
+                 "How many people in the world can speak Arabic language?"  
+
+  PREFIX owl: <http://www.w3.org/2002/07/owl#>
+  PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+  PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+  PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+  PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+  PREFIX quepy: <http://www.machinalis.com/quepy#>
+  PREFIX dbpedia: <http://dbpedia.org/ontology/>
+  PREFIX dbpprop: <http://dbpedia.org/property/>
+  PREFIX dbpedia-owl: <http://dbpedia.org/ontology/>
+  
+  SELECT DISTINCT ?x1 WHERE { 
+    ?x0 rdf:type dbpedia-owl:Language. ?x0 rdfs:label "English language"@en. 
+    ?x0 dbpprop:speakers ?x1. }  
+
+Question template:
+
+  regex =   (Lemmas("how many") + Lemma("people") + (Lemma("speaks") | Lemma("speak")) + Language() + Question(Pos("."))) | \
+            (Lemmas("how many") + Lemma("people") + Pos("IN") + Pos("DT") + Lemma("world") + Lemma("can") + (Lemma("speak") | Lemma("speaks")) + Language() + Question(Pos(".")))
+     
+Result:
+
++-------------------------------------+
+|                 x1                  |
++=====================================+
+|"360000000"                          |
++-------------------------------------+
+|"L2: 375 million and 750 million EFL"|
++-------------------------------------+
+
+------------------------------------------------------------------------------------------------------------------------
+
+SPARQL query for "Where is Thai language spoken?"
+                 "list of countries speaks Arabic language?"
+                 "Countries that speaks Japanese language?"
+
+  PREFIX owl: <http://www.w3.org/2002/07/owl#>
+  PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+  PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+  PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+  PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+  PREFIX quepy: <http://www.machinalis.com/quepy#>
+  PREFIX dbpedia: <http://dbpedia.org/ontology/>
+  PREFIX dbpprop: <http://dbpedia.org/property/>
+  PREFIX dbpedia-owl: <http://dbpedia.org/ontology/>
+  
+  SELECT DISTINCT ?x2 WHERE { 
+    ?x0 rdf:type dbpedia-owl:Language. ?x0 rdfs:label "Thai language"@en. 
+    ?x0 dbpedia-owl:spokenIn ?x1. ?x1 foaf:name ?x2. } 
+
+Question template:
+
+  regex =  (Lemmas("where be")  + Language() + Lemma("spoken") + Question(Pos("."))) | \
+           (Question(Lemma("list")) + Pos("IN") + Lemma("country") +  (Lemma("speaks") | Lemma("speak")) + Language() + Question(Pos("."))) | \
+           (Lemma("countries") + Question(Lemma("that")) + (Lemma("speaks") | Lemma("speak")) + Language() + Question(Pos("."))  )    
+     
+Result:
+
++------------------------------+
+|               x2             |
++==============================+
+|"Thailand"                    |
++------------------------------+
+|"Prathet Thai"                |
++------------------------------+
+|"Ratcha Anachak Thai          |
++------------------------------+
+
+------------------------------------------------------------------------------------------------------------------------
+
+SPARQL query for "What language family does Thai language belong to?"
+                 "What language family does Arabic language part of?"
+                 "What is the language family of English language?"
+
+  PREFIX owl: <http://www.w3.org/2002/07/owl#>
+  PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+  PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+  PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+  PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+  PREFIX quepy: <http://www.machinalis.com/quepy#>
+  PREFIX dbpedia: <http://dbpedia.org/ontology/>
+  PREFIX dbpprop: <http://dbpedia.org/property/>
+  PREFIX dbpedia-owl: <http://dbpedia.org/ontology/>
+  
+  SELECT DISTINCT ?x2 WHERE { 
+    ?x0 rdf:type dbpedia-owl:Language. ?x0 rdfs:label "Thai language"@en. 
+    ?x0 dbpedia-owl:languageFamily ?x1. ?x1 rdfs:label ?x2.     
+    FILTER (lang(?x2) = 'en')}
+
+Question template:
+
+  regex =   (Lemma("what")  + Lemma("language") + Lemma("family") + Pos("VBZ") + Language() + ((Lemma("belong") | Lemma("belongs")) + Pos("TO") | Lemma("part") + Pos("IN")) + Question(Pos("."))) | \
+            (Lemma("what")  + Lemma("be") + Pos("DT") + Lemma("language") + Lemma("family")  + Pos("IN") + Language() + Question(Pos(".")))
+    
+Result:
+
++--------------------------------+
+|               x2               |
++================================+
+|"Southwestern Tai languages"@en |
++--------------------------------+
+|"Tai languages"@en              |
++--------------------------------+
+
+------------------------------------------------------------------------------------------------------------------------
+
+SPARQL query for "list of countries that speaks Arabic language as an official language?"
+                 "where is Thai language spoken as an official language?"
+                 "Countries speaks English language as official language?"
+
+  PREFIX owl: <http://www.w3.org/2002/07/owl#>
+  PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+  PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+  PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+  PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+  PREFIX quepy: <http://www.machinalis.com/quepy#>
+  PREFIX dbpedia: <http://dbpedia.org/ontology/>
+  PREFIX dbpprop: <http://dbpedia.org/property/>
+  PREFIX dbpedia-owl: <http://dbpedia.org/ontology/>
+  
+  SELECT DISTINCT ?x2 WHERE { 
+    ?x0 rdf:type dbpedia-owl:Language. ?x0 rdfs:label "Arabic language"@en. 
+    ?x1 dbpprop:officialLanguages ?x0. ?x1 dbpprop:commonName ?x2. } 
+
+Question template:
+
+  regex =   (Lemmas("where be")  + Language() + Lemma("spoken") + Pos("IN") + Question(Pos("DT")) + Lemma("official") +  Lemma("language") + Question(Pos("."))) | \
+            (Question(Lemma("list") + Pos("IN")) + (Lemma("country")|Lemma("countries")) +  Question(Lemma("that")) + (Lemma("speaks") | Lemma("speak")) + Language() + Pos("IN") + Question(Pos("DT")) + Lemma("official") +  Lemma("language") + Question(Pos(".")))
+
+Result:
+
++------------------------------+
+|               x2             |
++==============================+
+|"Darfur"                      |
++------------------------------+
+|"Palestine"                   |
++------------------------------+
+|"North Yemen"                 |
++------------------------------+
+|"Khemed"                      |
++------------------------------+
+|"Bahrain"                     |
++------------------------------+
+|"Algeria"                     |    
++------------------------------+
+|"Gaza Strip"                  |
++------------------------------+
+|"Jordan"                      |
++------------------------------+
+|"Kuwait"                      |
++------------------------------+
+|"Oman"                        |
++------------------------------+
+|"Qatar"                       |
++------------------------------+
+|"Saudi Arabia"                |
++------------------------------+
+|"Tunisia"                     |
++------------------------------+
+|"United Arab Emirates"        |
++------------------------------+
+|"Yemen"                       |
++------------------------------+
+|"Syria"                       |
++------------------------------+
+|"Iraq"                        |
++------------------------------+

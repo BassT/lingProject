@@ -1,0 +1,340 @@
+=================
+Domain University
+=================
+
+SPARQL query for "list all universities?"
+                 "list all universities in dbpedia?"
+
+  PREFIX owl: <http://www.w3.org/2002/07/owl#>
+  PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+  PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+  PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+  PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+  PREFIX quepy: <http://www.machinalis.com/quepy#>
+  PREFIX dbpedia: <http://dbpedia.org/ontology/>
+  PREFIX dbpprop: <http://dbpedia.org/property/>
+  PREFIX dbpedia-owl: <http://dbpedia.org/ontology/>
+  
+  SELECT DISTINCT ?x1 WHERE {
+    ?x0 rdf:type dbpedia-owl:University. ?x0 rdfs:label ?x1.
+    FILTER (lang(?x1) = 'en')} 
+
+Question template:
+
+  regex =   (Question(Lemma("list")) + Lemma("all") + Lemma("university") + Question(Pos("."))) | \
+            (Question(Lemma("list")) + Lemma("all") + Lemma("university") + Pos("IN") + Lemma("dbpedia") + Question(Pos("."))) 
+    
+Result:
+
++----------------------------------------------+
+|                     x1                       |
++==============================================+
+|"York University"@en                          |
++----------------------------------------------+
+|"Yorkville University"@en                     |
++----------------------------------------------+
+|"Academy of Performing Arts in Bratislava"@en |   
++----------------------------------------------+
+|"Akita International University"@en           |
++----------------------------------------------+
+|"Altai State Academy of Education"@en         |
++----------------------------------------------+
+|"American University"@en                      |
++----------------------------------------------+
+|"American University of Beirut"@en            |
++----------------------------------------------+
+|"Anglia Ruskin University"@en                 |
++----------------------------------------------+
+|"Babson College"@en                           |
++----------------------------------------------+
+|"Bard College at Simon's Rock"@en             |
++----------------------------------------------+
+|"Beijing Language and Culture University"@en  |
++----------------------------------------------+
+|"Beit Berl"@en                                |
++----------------------------------------------+
+|"Berea College"@en                            |
++----------------------------------------------+
+|"Berlin School of Economics and Law"@en       |
++----------------------------------------------+
+|"Black Mountain College"@en                   |
++----------------------------------------------+
+|"Bocconi University"@en                       |
++----------------------------------------------+
+
+------------------------------------------------------------------------------------------------------------------------
+
+SPARQL query for "How many postgraduate students in York University?"
+                 "How many post grad students in University of Toronto?"
+                 "How many post graduate students in University of Toronto?"
+                 "Number of postgraduate students in York University?"
+                 "Number of post grad students in Harvard University?"
+                 "Number of post graduate students in Harvard University?"  
+
+  PREFIX owl: <http://www.w3.org/2002/07/owl#>
+  PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+  PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+  PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+  PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+  PREFIX quepy: <http://www.machinalis.com/quepy#>
+  PREFIX dbpedia: <http://dbpedia.org/ontology/>
+  PREFIX dbpprop: <http://dbpedia.org/property/>
+  PREFIX dbpedia-owl: <http://dbpedia.org/ontology/>
+  
+  SELECT DISTINCT ?x1 WHERE { 
+    ?x0 rdf:type dbpedia-owl:University. ?x0 rdfs:label "York University"@en.
+    ?x0 dbpedia-owl:numberOfPostgraduateStudents ?x1. } 
+
+Question template:
+
+  regex =   ((Lemmas("how many")| Lemmas("number of")) + Lemma("postgraduate") + Lemma("student") + Pos("IN") + University() + Question(Pos("."))) | \
+            ((Lemmas("how many") | Lemmas("number of")) + Lemma("post") + (Lemma("grad") | Lemma("graduate")) + Lemma("student") + Pos("IN") + University() + Question(Pos(".")))
+   
+Result:
+
++------------------------------+
+|               x1             |
++==============================+
+|"6140"                        |
++------------------------------+
+
+------------------------------------------------------------------------------------------------------------------------
+
+SPARQL query for "How many undergraduate students in York University?"
+                 "How many under grad students in University of Toronto?"
+                 "How many under graduate students in University of Toronto?"
+                 "Number of undergraduate students in York University?"
+                 "Number of under grad students in McGill University?"
+                 "Number of under graduate students in McGill University?"
+
+  PREFIX owl: <http://www.w3.org/2002/07/owl#>
+  PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+  PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+  PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+  PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+  PREFIX quepy: <http://www.machinalis.com/quepy#>
+  PREFIX dbpedia: <http://dbpedia.org/ontology/>
+  PREFIX dbpprop: <http://dbpedia.org/property/>
+  PREFIX dbpedia-owl: <http://dbpedia.org/ontology/>
+  
+  SELECT DISTINCT ?x1 WHERE { 
+    ?x0 rdf:type dbpedia-owl:University. ?x0 rdfs:label "York University"@en. 
+    ?x0 dbpedia-owl:numberOfUndergraduateStudents ?x1. } 
+
+Question template:
+
+  regex =  ((Lemmas("how many") | Lemmas("number of")) + Lemma("undergraduate") + Lemma("student") + Pos("IN") + University() + Question(Pos("."))) | \
+           ((Lemmas("how many")| Lemmas("number of")) + Lemma("under") + (Lemma("grad") | Lemma("graduate")) + Lemma("student") + Pos("IN") + University() + Question(Pos(".")))
+   
+Result:
+
++------------------------------+
+|               x1             |
++==============================+
+|"45890"                       |
++------------------------------+
+
+------------------------------------------------------------------------------------------------------------------------
+
+SPARQL query for "How many staff in York University?"
+                 "How many staff working in McGill University?"
+                 "Number of staff in University of Toronto?"
+                 "Number of staff working in University of Toronto?"
+
+  PREFIX owl: <http://www.w3.org/2002/07/owl#>
+  PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+  PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+  PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+  PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+  PREFIX quepy: <http://www.machinalis.com/quepy#>
+  PREFIX dbpedia: <http://dbpedia.org/ontology/>
+  PREFIX dbpprop: <http://dbpedia.org/property/>
+  PREFIX dbpedia-owl: <http://dbpedia.org/ontology/>
+  
+  SELECT DISTINCT ?x1 WHERE { 
+    ?x0 rdf:type dbpedia-owl:University. ?x0 rdfs:label "York University"@en. 
+    ?x0 dbpedia-owl:staff ?x1. } 
+
+Question template:
+
+  regex =   ((Lemmas("how many") | Lemmas("number of")) + Lemma("staff") + Pos("IN") + University() + Question(Pos("."))) | \
+            ((Lemmas("how many") | Lemmas("number of")) + Lemma("staff") + Lemma("work") + Pos("IN") + University() + Question(Pos(".")))
+   
+Result:
+
++------------------------------+
+|               x1             |
++==============================+
+|"7000"                        |
++------------------------------+
+
+------------------------------------------------------------------------------------------------------------------------
+
+SPARQL query for "What is York University colors?"
+                 "What is York University color?"
+                 "What is the colors of University of Toronto?"
+                 "What is the color of University of Toronto?"
+
+  PREFIX owl: <http://www.w3.org/2002/07/owl#>
+  PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+  PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+  PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+  PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+  PREFIX quepy: <http://www.machinalis.com/quepy#>
+  PREFIX dbpedia: <http://dbpedia.org/ontology/>
+  PREFIX dbpprop: <http://dbpedia.org/property/>
+  PREFIX dbpedia-owl: <http://dbpedia.org/ontology/>
+  
+  SELECT DISTINCT ?x1 WHERE {  
+    ?x0 rdf:type dbpedia-owl:University. ?x0 rdfs:label "York University"@en. 
+    ?x0 dbpedia-owl:officialSchoolColour ?x1. } 
+
+Question template:
+
+  regex =   (Lemmas("what be") + University() + (Lemma("colors")|Lemma("color")) + Question(Pos("."))) | \
+            (Lemmas("what be") + Lemma("the") + (Lemma("colors")|Lemma("color")) + Pos("IN") + University() + Question(Pos(".")))
+        
+Result:
+
++------------------------------+
+|               x1             |
++==============================+
+|"Red and white"               |
++------------------------------+
+
+------------------------------------------------------------------------------------------------------------------------
+
+SPARQL query for "What is the motto of York University?"
+                 "What is University of Toronto motto?"
+               
+  PREFIX owl: <http://www.w3.org/2002/07/owl#>
+  PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+  PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+  PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+  PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+  PREFIX quepy: <http://www.machinalis.com/quepy#>
+  PREFIX dbpedia: <http://dbpedia.org/ontology/>
+  PREFIX dbpprop: <http://dbpedia.org/property/>
+  PREFIX dbpedia-owl: <http://dbpedia.org/ontology/>
+  
+  SELECT DISTINCT ?x1 WHERE { 
+    ?x0 rdf:type dbpedia-owl:University. ?x0 rdfs:label "York University"@en. 
+    ?x0 dbpprop:mottoeng ?x1. }  
+
+Question template:
+
+  regex =   (Lemmas("what be") + University() + Lemma("motto") + Question(Pos("."))) | \
+            (Lemmas("what be") + Lemma("the") + Lemma("motto") + Pos("IN") + University() + Question(Pos(".")))
+
+Result:
+
++------------------------------+
+|               x1             |
++==============================+
+|"The way must be tried"       |
++------------------------------+
+
+------------------------------------------------------------------------------------------------------------------------
+
+SPARQL query for "when was the establishment of McGill University?"
+                 "on which date York University was established?"
+                 "which date Harvard University was established?"
+                 "When did University of Toronto established?"
+               
+  PREFIX owl: <http://www.w3.org/2002/07/owl#>
+  PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+  PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+  PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+  PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+  PREFIX quepy: <http://www.machinalis.com/quepy#>
+  PREFIX dbpedia: <http://dbpedia.org/ontology/>
+  PREFIX dbpprop: <http://dbpedia.org/property/>
+  PREFIX dbpedia-owl: <http://dbpedia.org/ontology/>
+  
+  SELECT DISTINCT ?x1 WHERE { 
+    ?x0 rdf:type dbpedia-owl:University. ?x0 rdfs:label "McGill University"@en. 
+    ?x0 dbpprop:established ?x1. } 
+
+Question template:
+
+  regex =   (Lemmas("when be") + Lemma("the") + Lemma("establishment") + Pos("IN") + University() + Question(Pos("."))) | \
+            ((Lemma("which") | Lemmas("on which")) + Lemma("date") +  University() + Lemma("be") + Lemma("establish") + Question(Pos("."))) | \
+            (Lemmas("when do") + University() + Lemma("establish") + Question(Pos(".")))
+    
+Result:
+
++------------------------------+
+|               x1             |
++==============================+
+|"1821"                        |
++------------------------------+
+
+------------------------------------------------------------------------------------------------------------------------
+
+SPARQL query for "What is the nickname of York University?"
+                 "What is University of Toronto nickname?"
+               
+  PREFIX owl: <http://www.w3.org/2002/07/owl#>
+  PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+  PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+  PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+  PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+  PREFIX quepy: <http://www.machinalis.com/quepy#>
+  PREFIX dbpedia: <http://dbpedia.org/ontology/>
+  PREFIX dbpprop: <http://dbpedia.org/property/>
+  PREFIX dbpedia-owl: <http://dbpedia.org/ontology/>
+  
+  SELECT DISTINCT ?x1 WHERE { 
+    ?x0 rdf:type dbpedia-owl:University. ?x0 rdfs:label "York University"@en. 
+    ?x0 foaf:nick ?x1. } 
+
+Question template:
+
+  regex =   (Lemmas("what be") + University() + Lemma("nickname") + Question(Pos("."))) | \
+            (Lemmas("what be") + Lemma("the") + Lemma("nickname") + Pos("IN") + University() + Question(Pos(".")))
+
+Result:
+
++------------------------------+
+|               x1             |
++==============================+
+|"York Lions"                  |
++------------------------------+
+
+------------------------------------------------------------------------------------------------------------------------
+
+SPARQL query for "What does York University own?"
+                 "What does University of Toronto own?"
+                 "List some properties owned by Harvard University?"
+                 "Some properties owned by McGill University"
+               
+  PREFIX owl: <http://www.w3.org/2002/07/owl#>
+  PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+  PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+  PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+  PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+  PREFIX quepy: <http://www.machinalis.com/quepy#>
+  PREFIX dbpedia: <http://dbpedia.org/ontology/>
+  PREFIX dbpprop: <http://dbpedia.org/property/>
+  PREFIX dbpedia-owl: <http://dbpedia.org/ontology/>
+  
+  SELECT DISTINCT ?x2 WHERE { 
+    ?x0 rdf:type dbpedia-owl:University. ?x0 rdfs:label "York University"@en. 
+    ?x1 dbpedia-owl:owner ?x0. ?x1 rdfs:label ?x2. } 
+
+Question template:
+
+  regex =   (Lemmas("what do") + University() + Lemma("own") + Question(Pos("."))) | \
+            (Question(Lemma("list")) + Lemma("some") + Lemma("property") + Lemma("own") + Pos("IN") + University() + Question(Pos(".")))
+        
+Result:
+
++------------------------------------------+
+|                     x2                   |
++==========================================+
+|"York Stadium"                            |
++------------------------------------------+
+|"Tait McKenzie Centre"                    |               
++------------------------------------------+
+|"Pan Am and Parapan Am Athletics Stadium" |
++------------------------------------------+
