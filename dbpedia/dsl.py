@@ -332,3 +332,42 @@ class OfficialLanguageOf(FixedRelation):
 class CommonNameOf(FixedRelation):
     relation = "dbpprop:commonName"
     reverse = True
+    
+# ============================================ #
+#    Domain specific language for Actor        #
+# ============================================ #
+
+class NumOfChildren(FixedRelation):
+    relation = "dbpprop:children"
+    reverse = True
+    
+class SpouseOf(FixedRelation):
+    relation = "dbpprop:spouse"
+    reverse = True
+    
+class ActiveYearsOf(FixedRelation):
+    relation = "dbpprop:yearsActive"
+    reverse = True
+    
+class ProducedBy(FixedRelation):
+    relation = "dbpedia-owl:producer"
+    
+class ProducerOf(FixedRelation):
+    relation = "dbpedia-owl:producer"
+    reverse = True
+    
+class WriterBy(FixedRelation):
+    relation = "dbpedia-owl:writer"
+    
+class WriterOf(FixedRelation):
+    relation = "dbpedia-owl:writer"
+    reverse = True
+    
+class GuestBy(FixedRelation):
+    relation = "dbpedia-owl:guest"
+    
+class ShowGuestBy(FixedRelation):
+    relation = "dbpprop:guests"
+    
+     
+    

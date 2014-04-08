@@ -24,3 +24,4 @@ from hotel import *
 from university import *
 from NewBasic import *
 from language import *
+from actor import *
