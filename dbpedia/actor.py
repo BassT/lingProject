@@ -35,20 +35,6 @@ class Movie(Particle):
         print MovieName
         return IsMovie() + HasKeyword(MovieName)
     
-class ListAllActorsQuestion(QuestionTemplate):
-    """
-    Ex: "list all actors?"
-        "list all actors in dbpedia?"
-    """
-    
-    regex = (Question(Lemma("list")) + Lemma("all") + Lemma("actor") + Question(Pos("."))) | \
-        (Question(Lemma("list")) + Lemma("all") + Lemma("actor") + Pos("IN") + Lemma("dbpedia") + Question(Pos("."))) 
-    
-    def interpret(self, match):
-        Names = IsPerson()
-        return Names, "enum"    
-    
-    
 class ChildrenOfQuestion(QuestionTemplate):
     """
     Ex: "How many kids did Mel Gibson have?"
