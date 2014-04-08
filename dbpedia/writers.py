@@ -39,14 +39,12 @@ class Author(Particle):
 
 class WhoWroteQuestion(QuestionTemplate):
     """
-    Ex: "who wrote The Little Prince?"
-        "who is the author of A Game Of Thrones?"
+    Ex: "who is the author of A Game Of Thrones?"
     """
 
-    regex = ((Lemmas("who write") + Book()) |
-             (Question(Lemmas("who be") + Pos("DT")) +
-              Lemma("author") + Pos("IN") + Book())) + \
-            Question(Pos("."))
+    regex = (Question(Lemmas("who be") + Pos("DT")) + \
+             Lemma("author") + Pos("IN") + Book() + \
+            Question(Pos(".")))
 
     def interpret(self, match):
         author = NameOf(IsPerson() + AuthorOf(match.book))
