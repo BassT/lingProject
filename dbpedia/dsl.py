@@ -368,6 +368,29 @@ class GuestBy(FixedRelation):
     
 class ShowGuestBy(FixedRelation):
     relation = "dbpprop:guests"
+
+# ============================================ #
+#    Domain specific language for Restaurant   #
+# ============================================ #
+
+class IsRestaurant(FixedType):
+    fixedtype = "dbpedia-owl:Restaurant"
     
-     
+class CityOf(FixedRelation):
+    relation = "dbpprop:city"
+   
+class FoodTypeOf(FixedRelation):
+    relation = "dbpedia-owl:cuisine"
+    reverse = True
     
+class AddressOf(FixedRelation):
+    relation = "dbpedia-owl:address"
+    reverse = True
+    
+class DressOf(FixedRelation):
+    relation = "dbpprop:dressCode"
+    reverse = True
+    
+class ChefOf(FixedRelation):
+    relation = "dbpprop:headChef"
+    reverse = True    

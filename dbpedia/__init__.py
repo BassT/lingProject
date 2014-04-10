@@ -25,3 +25,4 @@ from university import *
 from NewBasic import *
 from language import *
 from actor import *
+from restaurant import *
