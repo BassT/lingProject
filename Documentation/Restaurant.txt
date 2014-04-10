@@ -1,0 +1,173 @@
+=================
+Domain Restaurant
+=================
+
+SPARQL query for "list all restaurants in New York City?"
+                 
+  PREFIX owl: <http://www.w3.org/2002/07/owl#>
+  PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+  PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+  PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+  PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+  PREFIX quepy: <http://www.machinalis.com/quepy#>
+  PREFIX dbpedia: <http://dbpedia.org/ontology/>
+  PREFIX dbpprop: <http://dbpedia.org/property/>
+  PREFIX dbpedia-owl: <http://dbpedia.org/ontology/>
+  
+  SELECT DISTINCT ?x2 WHERE { 
+    ?x0 rdf:type dbpedia-owl:Restaurant. ?x0 dbpprop:city ?x1. 
+    ?x0 foaf:name ?x2. ?x1 rdfs:label "New York City"@en. }  
+
+Question template:
+
+  city = Group(Plus(Pos("NN") | Pos("NNS") | Pos("NNP") | Pos("NNPS")), "city")
+  
+  regex = (Question(Lemma("list")) + Question(Lemma("all")) + (Lemma("restaurant") |Lemma("restaurants")) + Pos("IN") + city + Question(Pos("."))) 
+    
+Result:
+
++------------------------------+
+|              x2              |
++==============================+
+|"21 Club"                     |
++------------------------------+
+|"Corton"                      |
++------------------------------+
+|"Ellen's Stardust Diner"      |
++------------------------------+
+|"Kossar's Bialys"             |
++------------------------------+
+|"Nathan's Famous"             |
++------------------------------+
+|"Oyster Bar"                  |
++------------------------------+
+|"Brasserie Julien"            |
++------------------------------+
+|"Lutèce"                      |
++------------------------------+
+
+------------------------------------------------------------------------------------------------------------------------
+
+SPARQL query for "What type of food does Oyster Bar serve?"
+                 
+  PREFIX owl: <http://www.w3.org/2002/07/owl#>
+  PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+  PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+  PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+  PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+  PREFIX quepy: <http://www.machinalis.com/quepy#>
+  PREFIX dbpedia: <http://dbpedia.org/ontology/>
+  PREFIX dbpprop: <http://dbpedia.org/property/>
+  PREFIX dbpedia-owl: <http://dbpedia.org/ontology/>
+  
+  SELECT DISTINCT ?x1 WHERE { 
+    ?x0 rdf:type dbpedia-owl:Restaurant. ?x0 rdfs:label "Oyster Bar"@en. 
+    ?x0 dbpedia-owl:cuisine ?x1. } 
+
+Question template:
+
+   regex = (Lemma("what") + (Lemma("type") | Lemma("kind")) + Pos("IN") + Lemma("food") + Lemma("do") + \
+            Restaurant() + Question(Lemma("restaurant")) + (Lemma("serve") | Lemma("have")) + Question(Pos(".")))
+    
+Result:
+
++------------------------------+
+|               x1             |
++==============================+
+|"Seafood"                     |
++------------------------------+
+
+
+------------------------------------------------------------------------------------------------------------------------
+
+SPARQL query for "What is the address of Square Boy restaurant?"
+              
+  PREFIX owl: <http://www.w3.org/2002/07/owl#>
+  PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+  PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+  PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+  PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+  PREFIX quepy: <http://www.machinalis.com/quepy#>
+  PREFIX dbpedia: <http://dbpedia.org/ontology/>
+  PREFIX dbpprop: <http://dbpedia.org/property/>
+  PREFIX dbpedia-owl: <http://dbpedia.org/ontology/>
+  
+  SELECT DISTINCT ?x1 WHERE { 
+    ?x0 rdf:type dbpedia-owl:Restaurant. ?x0 rdfs:label "Square Boy"@en. 
+    ?x0 dbpedia-owl:address ?x1. }   
+
+Question template:
+
+  regex =  (Lemmas("what be") + Pos("DT") + Lemma("address") + Pos("IN") + \
+           Restaurant() + Question(Lemma("restaurant")) + Question(Pos("."))) | \
+           (Lemmas("where be") + Restaurant() + Lemma("locate") + Question(Lemma("restaurant")) + Question(Pos(".")))
+    
+Result:
+
++------------------------------+
+|               x1             |
++==============================+
+|"875 Danforth Avenue"         |
++------------------------------+
+
+------------------------------------------------------------------------------------------------------------------------
+
+SPARQL query for "What is the dress code in The Ivy restaurant?"
+
+  PREFIX owl: <http://www.w3.org/2002/07/owl#>
+  PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+  PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+  PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+  PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+  PREFIX quepy: <http://www.machinalis.com/quepy#>
+  PREFIX dbpedia: <http://dbpedia.org/ontology/>
+  PREFIX dbpprop: <http://dbpedia.org/property/>
+  PREFIX dbpedia-owl: <http://dbpedia.org/ontology/>
+  
+  SELECT DISTINCT ?x1 WHERE { 
+    ?x0 rdf:type dbpedia-owl:Restaurant. ?x0 rdfs:label "The Ivy"@en. 
+    ?x0 dbpprop:dressCode ?x1. } 
+
+Question template:
+
+  regex =   (Lemmas("what be") + Pos("DT") + Lemma("dress") + Lemma("code") + Pos("IN") + \
+            Restaurant() + Question(Lemma("restaurant")) + Question(Pos("."))) | \
+            ((Lemmas("what should") | Lemmas("what can")) + (Lemma("you") | Lemma("i")) + Lemma("wear") + \
+            Pos("IN") + Question(Lemma("the")) + Restaurant() + Question(Lemma("restaurant")) + Question(Pos(".")))
+    
+Result:
+
++------------------------------+
+|               x1             |
++==============================+
+|"Smart casual"                |
++------------------------------+
+------------------------------------------------------------------------------------------------------------------------
+
+SPARQL query for "who is the head chef of 21 Club restaurant?"
+
+  PREFIX owl: <http://www.w3.org/2002/07/owl#>
+  PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+  PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+  PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+  PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+  PREFIX quepy: <http://www.machinalis.com/quepy#>
+  PREFIX dbpedia: <http://dbpedia.org/ontology/>
+  PREFIX dbpprop: <http://dbpedia.org/property/>
+  PREFIX dbpedia-owl: <http://dbpedia.org/ontology/>
+  
+  SELECT DISTINCT ?x1 WHERE { 
+    ?x0 rdf:type dbpedia-owl:Restaurant. ?x0 rdfs:label "21 Club"@en. 
+    ?x0 dbpprop:headChef ?x1. } 
+
+Question template:
+
+  regex =   (Lemmas("who be") + Lemma("the") + Question(Lemma("head")) + Lemma("chef") + Pos("IN") + \
+            Restaurant() + Question(Lemma("restaurant")) + Question(Pos("."))) 
+Result:
+
++------------------------------+
+|               x1             |
++==============================+
+|"John Greeley"                |
++------------------------------+
