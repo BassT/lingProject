@@ -30,17 +30,7 @@ quepy.set_loglevel("DEBUG")
 
 @bottle.route("/")
 def index():
-    yield u"<p>Here is a <a href=\"http://bottlepy.org/\">bottle</a> app under construction. This example converts the question 'What is a blowtorch?' to a SPARQL query using <a href=\"http://quepy.machinalis.com/\">quepy</a>, queries dbpedia and returns the results (the RDF literals retrieved by rdfs:comment).</p>"
-    yield u"Try your own question like this: <a href=\"http://pacific-river-6269.herokuapp.com/question/Who is Arnold Schwarzenegger?\">http://pacific-river-6269.herokuapp.com/question/Who is Arnold Schwarzenegger?</a>"
-    target, query, metadata = dbpedia.get_query("what is a blowtorch")
-    yield u"<p>" + query + u"</p>"
-    sparql.setQuery(query)
-    sparql.setReturnFormat(JSON)
-    results = sparql.query().convert()
-
-    for result in results["results"]["bindings"]:
-        yield "<p>" + result["x1"]["value"] + "</p>"
-    return
+    return template("index")
 
 @bottle.route("/question/<q>")
 def question(q):
@@ -75,6 +65,28 @@ def question(q):
    
     except:
          yield u"<p>DBpedia is now unavailable, please try again after a few mintues</p?>"
+
+@bottle.post("/result")
+def result():
+    q = request.forms.get('input')
+    target, query, metadata = dbpedia.get_query(q)
+    if isinstance(metadata, tuple):
+        query_type = metadata[0]
+        metadata = metadata[1]
+    else:
+        query_type = metadata
+        metadata = None
+    if query is None:
+        return template("result", error=u"<p>Query not generated :(</p>") 
+ 
+    if target.startswith("?"):
+        target = target[1:]
+    if query:
+        sparql.setQuery(query)
+        sparql.setReturnFormat(JSON)
+        results = sparql.query().convert()
+    
+    return template("result", results=results, target=target)
         
 #   @get("/tryqustion") # or @route('/login')
 @bottle.route("/tryquestion")
