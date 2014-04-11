@@ -345,13 +345,6 @@ class SpouseOf(FixedRelation):
     relation = "dbpprop:spouse"
     reverse = True
     
-class ActiveYearsOf(FixedRelation):
-    relation = "dbpprop:yearsActive"
-    reverse = True
-    
-class ProducedBy(FixedRelation):
-    relation = "dbpedia-owl:producer"
-    
 class ProducerOf(FixedRelation):
     relation = "dbpedia-owl:producer"
     reverse = True

@@ -13,7 +13,7 @@ Actor related regex.
 from refo import Question, Plus
 from quepy.dsl import HasKeyword
 from quepy.parsing import Lemma, Lemmas, Pos, QuestionTemplate, Particle
-from dbpedia.dsl import IsPerson, NumOfChildren, SpouseOf, NameOf, ActiveYearsOf, \
+from dbpedia.dsl import IsPerson, NumOfChildren, SpouseOf, NameOf, ActiveYears, \
     ProducedBy, ProducerOf, WriterBy, WriterOf, GuestBy, ShowGuestBy, LabelOf, IsMovie
 
 class Actor(Particle):
@@ -73,8 +73,8 @@ class ActiveYearsOfQuestion(QuestionTemplate):
         ((Lemma("how")) + Lemma("long") + Lemma("have") + Actor() + Lemma("be") + (Lemma("act") | Pos("DT") + Lemma("actor")) + Question(Pos(".")))
    
     def interpret(self, match):
-        ActiveYears = ActiveYearsOf(match.actor)
-        return ActiveYears, "literal"
+        Years = ActiveYears(match.actor)
+        return Years, "literal"
     
     
 class MoviesByProducerQuestion(QuestionTemplate):
