@@ -28,6 +28,7 @@ class University(Particle):
     
 class ListUniversitiesQuestion(QuestionTemplate):
     """
+    Regex for questions about listing all universities in dbpedia
     Ex: "list all universities?"
         "list all universities in dbpedia?"
     """
@@ -42,6 +43,7 @@ class ListUniversitiesQuestion(QuestionTemplate):
 
 class GradStudentQuestion(QuestionTemplate):
     """
+    Regex for questions about the number of graduate students in a university
     Ex: "How many postgraduate students in York University?"
         "How many post grad students in University of Toronto?"
         "How many post graduate students in University of Toronto?"
@@ -60,6 +62,7 @@ class GradStudentQuestion(QuestionTemplate):
     
 class UndergradStudentQuestion(QuestionTemplate):
     """
+    Regex for questions about the number of undergraduate students in a university
     Ex: "How many undergraduate students in York University?"
         "How many under grad students in University of Toronto?"
         "How many under graduate students in University of Toronto?"
@@ -78,6 +81,7 @@ class UndergradStudentQuestion(QuestionTemplate):
     
 class NumberOfStaffQuestion(QuestionTemplate):
     """
+    Regex for questions about the number of staff in a university
     Ex: "How many staff in York University?"
         "How many staff working in McGill University?"
         "Number of staff in University of Toronto?"
@@ -94,6 +98,7 @@ class NumberOfStaffQuestion(QuestionTemplate):
     
 class ColorOfQuestion(QuestionTemplate):
     """
+    Regex for questions about the colors for a university
     Ex: "What is York University colors?"
         "What is York University color?"
         "What is the colors of University of Toronto?"
@@ -110,6 +115,7 @@ class ColorOfQuestion(QuestionTemplate):
     
 class MottoOfQuestion(QuestionTemplate):
     """
+    Regex for questions about the motto for a university
     Ex: "What is the motto of York University?"
         "What is University of Toronto motto?"
     """
@@ -124,6 +130,7 @@ class MottoOfQuestion(QuestionTemplate):
 
 class EstablishOfQuestion(QuestionTemplate):
     """
+    Regex for questions about when did a university established
     Ex: "when was the establishment of McGill University?"
         "on which date York University was established?"
         "which date Harvard University was established?"
@@ -141,6 +148,7 @@ class EstablishOfQuestion(QuestionTemplate):
 
 class NicknameOfQuestion(QuestionTemplate):
     """
+    Regex for questions about the nickname for the university
     Ex: "What is the nickname of York University?"
         "What is University of Toronto nickname?"
     """
@@ -155,6 +163,7 @@ class NicknameOfQuestion(QuestionTemplate):
     
 class UniversityOwnerOfQuestion(QuestionTemplate):
     """
+    Regex for questions about the properties that a university own
     Ex: "What does York University own?"
         "What does University of Toronto own?"
         "List some properties owned by Harvard University?"

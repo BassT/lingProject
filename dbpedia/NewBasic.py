@@ -26,6 +26,7 @@ class Thing(Particle):
 
 class WhatIs(QuestionTemplate):
     """
+    Regex for questions about what is a thing
     Ex: "What is a car"
         "What is York University?"
         "What is University of Toronot?"
@@ -41,6 +42,7 @@ class WhatIs(QuestionTemplate):
 
 class LinkQuestion(QuestionTemplate):
     """
+    Regex for questions about the website for a thing
     Ex: "what is the link of Jumeirah Beach Hotel?"
         "what is the website of Jumeirah Beach Hotel?"
         "what is the link of York University?"

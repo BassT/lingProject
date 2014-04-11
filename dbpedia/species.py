@@ -18,6 +18,7 @@ from dbpedia.dsl import IsSpecies, FiberOf, CarbsOf, FatOf, ProteinOf, SugarOf, 
 
 class FiberOfQuestion(QuestionTemplate):
     """
+    Regex for questions about the fiber in species
     Ex: "How much fiber in an Apple?"
         "How much fiber an Apple have"
         "Do Apple have fiber"
@@ -35,6 +36,7 @@ class FiberOfQuestion(QuestionTemplate):
     
 class CarbsOfQuestion(QuestionTemplate):
     """
+    Regex for questions about the carbs in species
     Ex: "How much carbs in an apple?"
         "How much carbs an Apple have?"
         "Do Apple have carbs?"
@@ -52,6 +54,7 @@ class CarbsOfQuestion(QuestionTemplate):
     
 class FatOfQuestion(QuestionTemplate):
     """
+    Regex for questions about the fat in species
     Ex: "How much fat in an apple?"
         "How much fat an Apple have?"
         "Do Apple have fat?"
@@ -69,6 +72,7 @@ class FatOfQuestion(QuestionTemplate):
     
 class ProteinOfQuestion(QuestionTemplate):
     """
+    Regex for questions about the protein in species
     Ex: "How much protein in an apple?"
         "How much protein an Apple have?"
         "Do Apple have protein?"
@@ -86,6 +90,7 @@ class ProteinOfQuestion(QuestionTemplate):
     
 class SugarOfQuestion(QuestionTemplate):
     """
+    Regex for questions about the sugar in species
     Ex: "How much sugar in an Apple?"
         "How much sugar an Apple have?"
         "Do Apple have sugar?"
@@ -103,6 +108,7 @@ class SugarOfQuestion(QuestionTemplate):
     
 class IngredientOfQuestion(QuestionTemplate):
     """
+    Regex for questions about ingredient that uses a species
     Ex: "what type of food uses Apple as ingredient?"
         "what kind of food uses Apple as ingredient?"
         "what food uses Apple as ingredient?"

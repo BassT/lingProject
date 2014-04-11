@@ -28,6 +28,7 @@ class Hotel(Particle):
 
 class ListHotelsQuestion(QuestionTemplate):
     """
+    Regex for questions about listing all Hotels in dbpedia
     Ex: "list all hotels?"
         "list all hotels in dbpedia?"
     """
@@ -62,6 +63,7 @@ class LocationOfQuestion(QuestionTemplate):
 
 class NumberOfRoomsQuestion(QuestionTemplate):
     """
+    Regex for questions about the number of rooms in a hotel
     Ex: "How many rooms in Jumeirah Beach Hotel?"
     """
     
@@ -75,6 +77,7 @@ class NumberOfRoomsQuestion(QuestionTemplate):
 
 class NumberOfRestaurantsQuestion(QuestionTemplate):
     """
+    Regex for questions about the number of restaurants in hotel
     Ex: "How many restaurants in Jumeirah Beach Hotel?"
     """
     
@@ -88,6 +91,7 @@ class NumberOfRestaurantsQuestion(QuestionTemplate):
 
 class OwnerOfQuestion(QuestionTemplate):
     """
+    Regex for questions about the owner of a hotel
     Ex: "who is the owner of Jumeirah Beach Hotel?"
     """
     
@@ -102,6 +106,7 @@ class OwnerOfQuestion(QuestionTemplate):
 
 class OpeningDateQuestion(QuestionTemplate):
     """
+    Regex for questions about the opening date of a hotel
     Ex: "when was the opening of Jumeirah Beach Hotel?"
         "which date the Jumeirah Beach Hotel was opened?"
         "When did Jumeirah Beach Hotel opened?"
@@ -121,6 +126,7 @@ class OpeningDateQuestion(QuestionTemplate):
     
 class FloorCountQuestion(QuestionTemplate):
     """
+    Regex for questions about the number of floors in a hotel
     Ex: "how many floors in Jumeirah Beach Hotel?"
     """
     
