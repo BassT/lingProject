@@ -7,7 +7,7 @@
     <title>Final project CSE 6339, 2014</title>
 
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootswatch/3.1.1/slate/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootswatch/3.1.1/cerulean/bootstrap.min.css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -19,14 +19,19 @@
   <body>
     <div class="container">
     	<h1>Natural Language Interface for Internet Search Engines</h1>
-    	<div class="row">
-    		<div class="col-md-12">
-    			<p><strong>Example questions:</strong></p>
-    			<ul>
+        <div class="panel panel-info">
+    		<div class="panel-heading">
+    			<h3 class="panel-title">Example questions:</h3>
+    		</div>
+                <div class="panel-body">
+                        <ul>
     				<li>Which companies are owned by Google?</li>
+                                <li>List all restaurants in London</li>
     			</ul>
     		</div>
     	</div>
+
+<div class="jumbotron">
     	<div class="row">
     		<div class="col-md-6">
     			<form role="form" action="/result" method="POST">
@@ -34,10 +39,11 @@
     					<label for="input">What would you like to know?</label>
     					<input type="text" class="form-control" id="input" name="input" placeholder="Enter a question">
     				</div>
-    				<button type="submit" class="btn btn-default">Get answer</button>
+    				<button type="submit" class="btn btn-info">Get answer</button>
     			</form>
     		</div>
     	</div>
+</div>
     	<div class="row">
     		<div class="col-md-6">
     			

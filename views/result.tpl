@@ -7,7 +7,7 @@
     <title>Final project CSE 6339, 2014</title>
 
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootswatch/3.1.1/slate/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootswatch/3.1.1/cerulean/bootstrap.min.css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -21,14 +21,18 @@
     	<h1>Natural Language Interface for Internet Search Engines</h1>
     	<div class="row">
     		<div class="col-md-12">
-    		<h2>Results</h2>
-            <table class="table">
-                %for result in results["results"]["bindings"]:
-                    <tr><td>{{ result[target]["value"] }}</td></tr>
-                %end
-            </table>
-    	</div>
-    </div>
+    		     <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Results</h3>
+                        </div>
+                        <div class="panel-body">
+                           <table class="table">
+                               %for result in results["results"]["bindings"]:
+                                <tr class="active"><td>{{ result[target]["value"] }}</td></tr>
+                                %end
+                           </table>
+                        </div>
+               </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
