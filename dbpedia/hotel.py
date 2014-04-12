@@ -28,8 +28,10 @@ class Hotel(Particle):
 
 class ListHotelsQuestion(QuestionTemplate):
     """
+    Regex for questions about listing all Hotels in dbpedia
     Ex: "list all hotels?"
         "list all hotels in dbpedia?"
+        "all hotels in dbpedia"
     """
     
     regex = (Question(Lemma("list")) + Lemma("all") + Lemma("hotel") + Question(Pos("."))) | \
@@ -39,34 +41,14 @@ class ListHotelsQuestion(QuestionTemplate):
         hotels = IsHotel()
         return NameOf(hotels), "enum"
     
-"""    
-
-********** Add LocationOfQuestion to Basic.py **********
-
-class LocationOfQuestion(QuestionTemplate):
-    
-    Ex: "Where is Jumeirah Beach Hotel?"
-        "Where is the location of Jumeirah Beach Hotel?"
-        "What is the location of Jumeirah Beach Hotel?"
-        "Show me the location of Jumeirah Beach Hotel?"
-        "Give me the location of Jumeirah Beach Hotel?"
-    
-    regex = (Lemma("where") + Lemma("be") + Hotel() + Question(Pos("."))) | \
-         (Question(Lemmas("where be") | Lemmas("what be")) + Lemma("the") + Lemma("location") + Pos("IN") + Hotel() + Question(Pos("."))) | \
-         (Question(Lemma("show")|Lemma("give")) + Lemma("me") + Lemma("the") + Lemma("location") + Pos("IN") + Hotel() + Question(Pos("."))) 
-            
-    def interpret(self, match):
-        HotelLocation = LocationOf(match.hotel)
-        return LabelOf(HotelLocation), "enum"
- """   
 
 class NumberOfRoomsQuestion(QuestionTemplate):
     """
+    Regex for questions about the number of rooms in a hotel
     Ex: "How many rooms in Jumeirah Beach Hotel?"
     """
     
-    regex = (Lemmas("how many") + Lemma("rooms") + Pos("IN") + Hotel() + Question(Pos("."))) | \
-        (Lemmas("how many") + Lemma("rooms") + Pos("IN") + Hotel() + Lemma("hotel") + Question(Pos(".")))
+    regex = (Lemmas("how many") + Lemma("rooms") + Pos("IN") + Hotel() + Question(Lemma("hotel")) + Question(Pos(".")))
     
     def interpret(self, match):
         Rooms = NumOfRooms(match.hotel)
@@ -75,11 +57,11 @@ class NumberOfRoomsQuestion(QuestionTemplate):
 
 class NumberOfRestaurantsQuestion(QuestionTemplate):
     """
-    Ex: "How many restaurants in Jumeirah Beach Hotel?"
+    Regex for questions about the number of restaurants in hotel
+    Ex: "How many restaurants in The Peninsula Hong Kong hotel?"
     """
     
-    regex = (Lemmas("how many") + Lemma("restaurant") + Pos("IN") + Hotel() + Question(Pos("."))) | \
-        (Lemmas("how many") + Lemma("restaurant") + Pos("IN") + Hotel() + Lemma("hotel") +  Question(Pos(".")))
+    regex = (Lemmas("how many") + Lemma("restaurant") + Pos("IN") + Hotel() + Question(Lemma("hotel")) + Question(Pos(".")))
     
     def interpret(self, match):
         Restaurants = NumOfRestaurants(match.hotel)
@@ -88,11 +70,11 @@ class NumberOfRestaurantsQuestion(QuestionTemplate):
 
 class OwnerOfQuestion(QuestionTemplate):
     """
-    Ex: "who is the owner of Jumeirah Beach Hotel?"
+    Regex for questions about the owner of a hotel
+    Ex: "who is the owner of Capital Hilton?"
     """
     
-    regex = (Lemmas("who be") + Lemma("the") + Lemma("owner") + Pos("IN") + Hotel() + Question(Pos("."))) | \
-        (Lemmas("who be") + Lemma("the") + Lemma("owner") + Pos("IN") + Hotel() + Lemma("hotel") +  Question(Pos(".")))
+    regex = (Lemmas("who be") + Lemma("the") + Lemma("owner") + Pos("IN") + Hotel() + Question(Lemma("hotel")) + Question(Pos("."))) 
     
     def interpret(self, match):
         Owner = OwnerOf(match.hotel)
@@ -102,17 +84,15 @@ class OwnerOfQuestion(QuestionTemplate):
 
 class OpeningDateQuestion(QuestionTemplate):
     """
-    Ex: "when was the opening of Jumeirah Beach Hotel?"
-        "which date the Jumeirah Beach Hotel was opened?"
-        "When did Jumeirah Beach Hotel opened?"
+    Regex for questions about the opening date of a hotel
+    Ex: "When was the opening of Novotel Century Hong Kong hotel?"
+        "Which date the Hyatt Regency Atlanta was opened?"
+        "When did Hilton Chicago hotel opened?"
     """
     
-    regex = (Lemmas("when be") + Lemma("the") + Lemma("open") + Pos("IN") + Hotel() + Question(Pos("."))) | \
-        (Lemmas("when be") + Lemma("the") + Lemma("open") + Pos("IN") + Hotel() + Lemma("hotel") +  Question(Pos("."))) | \
-        (Lemma("which") + Lemma("date") + Lemma("the") + Hotel() + Lemma("be") + Lemma("open") + Question(Pos("."))) | \
-        (Lemma("which") + Lemma("date") + Lemma("the") + Hotel() + Lemma("hotel") + Lemma("be") + Lemma("open") + Question(Pos("."))) | \
-        (Lemmas("when do") + Hotel() + Lemma("open") + Question(Pos("."))) | \
-        (Lemmas("when do") + Hotel() + Lemma("hotel") + Lemma("open") + Question(Pos(".")))
+    regex = (Lemmas("when be") + Lemma("the") + Lemma("open") + Pos("IN") + Hotel() + Question(Lemma("hotel")) + Question(Pos("."))) | \
+        (Lemma("which") + Lemma("date") + Lemma("the") + Hotel() + Question(Lemma("hotel")) + Lemma("be") + Lemma("open") + Question(Pos("."))) | \
+        (Lemmas("when do") + Hotel() + Question(Lemma("hotel")) + Lemma("open") + Question(Pos("."))) 
     
     def interpret(self, match):
         Date = OpeningDateOf(match.hotel)
@@ -121,31 +101,13 @@ class OpeningDateQuestion(QuestionTemplate):
     
 class FloorCountQuestion(QuestionTemplate):
     """
-    Ex: "how many floors in Jumeirah Beach Hotel?"
+    Regex for questions about the number of floors in a hotel
+    Ex: "How many floors in The Peninsula New York hotel?"
     """
     
-    regex = (Lemmas("how many") +  Lemma("floor") + Pos("IN") + Hotel() + Question(Pos("."))) | \
-        (Lemmas("how many") +  Lemma("floor") + Pos("IN") + Hotel() + Lemma("hotel") +  Question(Pos(".")))
+    regex = (Lemmas("how many") +  Lemma("floor") + Pos("IN") + Hotel() + Question(Lemma("hotel")) + Question(Pos(".")))
     
     def interpret(self, match):
         FloorCount = FloorCountOf(match.hotel)
         return FloorCount, "literal"
-    
-"""
-
-********** Add LinkQuestion to NewBasic.py **********
-
-class LinkQuestion(QuestionTemplate):
-    
-    Ex: "what is the link of Jumeirah Beach Hotel?"
-        "what is the website of Jumeirah Beach Hotel?"
-    
-        
-    regex = (Lemmas("what be") +  Lemma("the") + (Lemma("link") | Lemma("website")) + Pos("IN") + Hotel() + Question(Pos("."))) | \
-        (Lemmas("what be") +  Lemma("the") + (Lemma("link") | Lemma("website")) + Pos("IN") + Hotel() + Lemma("hotel") + Question(Pos(".")))
-    
-    def interpret(self, match):
-        Link = ExternalLinkOf(match.hotel)
-        return Link, "enum"
-"""  
 

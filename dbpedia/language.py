@@ -29,6 +29,7 @@ class Language(Particle):
     
 class ListAllLanguagesQuestion(QuestionTemplate):
     """
+    Regex for questions about listing all languages in dbpedia
     Ex: "list all languages?"
         "list all languages in dbpedia?"
     """
@@ -43,6 +44,7 @@ class ListAllLanguagesQuestion(QuestionTemplate):
 
 class SpeakersOfQuestion(QuestionTemplate):
     """
+    Regex for questions about the number of people that speaks a language
     Ex: "How many people speaks English language?"
         "How many people speak Canadian French?"
         "How many people in the world can speak Arabic language?"
@@ -58,6 +60,7 @@ class SpeakersOfQuestion(QuestionTemplate):
 
 class SpokenInQuestion(QuestionTemplate):
     """
+    Regex for questions about where is a language spoken
     Ex: "Where is Thai language spoken?"
         "list of countries speaks Arabic language?"
         "Countries that speaks Japanese language?"
@@ -74,6 +77,7 @@ class SpokenInQuestion(QuestionTemplate):
     
 class LanguageFamilyOfQuestion(QuestionTemplate):
     """
+    Regex for questions about the language family for a language
     Ex: "What language family does Thai language belong to?"
         "What language family does Arabic language part of?"
         "What is the language family of English language?"
@@ -89,6 +93,7 @@ class LanguageFamilyOfQuestion(QuestionTemplate):
 
 class OfficialLanguageQuestion(QuestionTemplate):
     """
+    Regex for questions about which countries speaks a language as official language
     Ex: "where is Thai language spoken as an official language?"
         "list of countries that speaks Arabic language as an official language?"
         "Countries speaks English language as official language?"

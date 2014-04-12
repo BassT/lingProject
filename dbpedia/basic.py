@@ -15,8 +15,8 @@ from refo import Group, Plus, Question
 from quepy.parsing import Lemma, Pos, QuestionTemplate, Token, Particle, \
                           Lemmas
 from quepy.dsl import HasKeyword, IsRelatedTo, HasType
-from dsl import DefinitionOf, LabelOf, IsPlace, \
-    UTCof, LocationOf
+from dsl import LabelOf, IsPlace, \
+    UTCof
 
 
 # Openings
@@ -30,23 +30,6 @@ class Thing(Particle):
     def interpret(self, match):
         return HasKeyword(match.words.tokens)
 
-"""
-********** Add WhatIs Question to NewBasic.py **********
-class WhatIs(QuestionTemplate):
-    
-    Regex for questions like "What is a blowtorch
-    Ex: "What is a car"
-        "What is Seinfield?"
-    
-
-    regex = Lemma("what") + Lemma("be") + Question(Pos("DT")) + \
-        Thing() + Question(Pos("."))
-
-    def interpret(self, match):
-        label = DefinitionOf(match.thing)
-
-        return label, "define"
-"""
 
 class ListEntity(QuestionTemplate):
     """
@@ -86,30 +69,3 @@ class WhatTimeIs(QuestionTemplate):
         utc_offset = UTCof(place)
 
         return utc_offset, "time"
-
-
-class WhereIsQuestion(QuestionTemplate):
-    """
-    Ex: "where in the world is the Eiffel Tower"
-        "Where is Jumeirah Beach Hotel?"
-        "Where is the location of Jumeirah Beach Hotel?"
-        "What is the location of Jumeirah Beach Hotel?"
-        "Show me the location of Jumeirah Beach Hotel?"
-        "Give me the location of Jumeirah Beach Hotel?"
-    """
-
-    thing = Group(Plus(Pos("IN") | Pos("NP") | Pos("NNP") | Pos("NNPS")|Pos("CD") | Pos("JJ") |Pos("NNS") | Pos("DT") | Pos("NNP") | Pos("NNP")),
-                  "thing")
-              
-    regex = Lemma("where") + Question(Lemmas("in the world")) + Lemma("be") + Question(Pos("DT")) + thing + Question(Pos(".")) | \
-        (Lemma("where") + Lemma("be") + thing + Question(Pos("."))) | \
-        (Question(Lemmas("where be") | Lemmas("what be")) + Lemma("the") + Lemma("location") + Pos("IN") + thing + Question(Pos("."))) | \
-        (Question(Lemma("show")|Lemma("give")) + Lemma("me") + Lemma("the") + Lemma("location") + Pos("IN") + thing + Question(Pos("."))) 
-            
-
-    def interpret(self, match):
-        thing = HasKeyword(match.thing.tokens)
-        location = LocationOf(thing)
-        location_name = LabelOf(location)
-
-        return location_name, "enum"

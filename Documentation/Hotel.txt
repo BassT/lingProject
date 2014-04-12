@@ -3,8 +3,7 @@ Domain Hotel
 ============
 
 SPARQL query for "list all hotels?"
-                 "list all hotels in dbpedia?"
-
+                
   PREFIX owl: <http://www.w3.org/2002/07/owl#>
   PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
   PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
@@ -16,8 +15,7 @@ SPARQL query for "list all hotels?"
   PREFIX dbpedia-owl: <http://dbpedia.org/ontology/>
   
   SELECT DISTINCT ?x1 WHERE { 
-    ?x0 rdf:type dbpedia-owl:Hotel. ?x0 rdfs:label ?x1. 
-    FILTER (lang(?x1) = 'en')} 
+    ?x0 rdf:type dbpedia-owl:Hotel. ?x0 foaf:name ?x1. } 
 
 Question template:
 
@@ -29,47 +27,43 @@ Result:
 +-----------------------------------+
 |               x1                  |
 +===================================+
-|"Atlanta Marriott Marquis"@en      |
+|"Atlanta Marriott Marquis"         |
 +-----------------------------------+
-|"Casapueblo"@en                    |
+|"Casapueblo"                       |
 +-----------------------------------+
-|"Jumeirah Beach Hotel"@en          |   
+|"Jumeirah Beach Hotel"             |   
 +-----------------------------------+
-|"Savoy Hotel"@en                   |
+|"Savoy Hotel"                      |
 +-----------------------------------+
-|"The Peninsula Hong Kong"@en       |
+|"The Peninsula Hong Kong"          |
 +-----------------------------------+
-|"Ballathie House"@en               |
+|"Ballathie House"                  |
 +-----------------------------------+
-|"Falaknuma Palace"@en              |
+|"Falaknuma Palace"                 |
 +-----------------------------------+
-|"Four Seasons Hotel Hong Kong"@en  |
+|"Four Seasons Hotel Hong Kong"     |
 +-----------------------------------+
-|"Hotel Adlon"@en                   |
+|"Hotel Adlon"                      |
 +-----------------------------------+
-|"American Colony Hotel"@en         |
+|"American Colony Hotel"            |
 +-----------------------------------+
-|"Balmoral Hotel"@en                |
+|"Balmoral Hotel"                   |
 +-----------------------------------+
-|"Breidenbacher Hof"@en             |
+|"Breidenbacher Hof"                |
 +-----------------------------------+
-|"Conrad Centennial Singapore"@en   |
+|"Conrad Centennial Singapore"      |
 +-----------------------------------+
-|"Don CeSar"@en                     |
+|"Don CeSar"                        |
 +-----------------------------------+
-|"Don Chan Palace"@en               |
+|"Don Chan Palace"                  |
 +-----------------------------------+
-|"Excelsior Hotel Ernst"@en         |
+|"Excelsior Hotel Ernst"            |
 +-----------------------------------+
 
 ------------------------------------------------------------------------------------------------------------------------
 
 SPARQL query for "Where is Jumeirah Beach Hotel?"
-                 "Where is the location of Jumeirah Beach Hotel?"
-                 "What is the location of Jumeirah Beach Hotel?"
-                 "Show me the location of Jumeirah Beach Hotel?"
-                 "Give me the location of Jumeirah Beach Hotel?"
-
+                
   PREFIX owl: <http://www.w3.org/2002/07/owl#>
   PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
   PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
@@ -80,25 +74,27 @@ SPARQL query for "Where is Jumeirah Beach Hotel?"
   PREFIX dbpprop: <http://dbpedia.org/property/>
   PREFIX dbpedia-owl: <http://dbpedia.org/ontology/>
   
-  SELECT DISTINCT ?x2 WHERE { 
-    ?x0 rdf:type dbpedia-owl:Hotel. ?x0 rdfs:label "Jumeirah Beach Hotel"@en. 
-    ?x0 dbpedia-owl:location ?x1. ?x1 rdfs:label ?x2. 
-    FILTER (lang(?x2) = 'en')} 
+  SELECT DISTINCT ?x2 WHERE {
+    ?x0 rdfs:label "Jumeirah Beach Hotel"@en. ?x0 dbpedia-owl:location ?x1. 
+    ?x1 foaf:name ?x2. } 
 
 Question template:
 
-  regex =   (Lemma("where") + Lemma("be") + Hotel() + Question(Pos("."))) | \
-            (Question(Lemmas("where be") | Lemmas("what be")) + Lemma("the") + Lemma("location") + Pos("IN") + Hotel() + Question(Pos("."))) | \
-            (Question(Lemma("show")|Lemma("give")) + Lemma("me") + Lemma("the") + Lemma("location") + Pos("IN") + Hotel() + Question(Pos("."))) 
-            
+  regex =   Lemma("where") + Question(Lemmas("in the world")) + Lemma("be") + Question(Pos("DT")) + Thing() + Question(Pos(".")) | \
+           (Lemma("where") + Lemma("be") + Thing() + Question(Pos("."))) | \
+           (Question(Lemmas("where be")) + Lemma("the") + Lemma("location") + Pos("IN") + Thing() + Question(Pos("."))) | \
+           (Question(Lemma("show")|Lemma("give")) + Lemma("me") + Lemma("the") + Lemma("location") + Pos("IN") + Thing() + Question(Pos("."))) 
+           
 Result:
 
 +-----------------------------------+
 |               x2                  |
 +===================================+
-|"United Arab Emirates"@en          |
+|"United Arab Emirates"             |
 +-----------------------------------+
-|"Dubai"@en                         |
+|"Dubai"                            |
++-----------------------------------+
+|"Emirate of Dubai"                 |
 +-----------------------------------+
 
 ------------------------------------------------------------------------------------------------------------------------
@@ -121,8 +117,7 @@ SPARQL query for "How many rooms in Jumeirah Beach Hotel?"
 
 Question template:
 
-  regex =   (Lemmas("how many") + Lemma("rooms") + Pos("IN") + Hotel() + Question(Pos("."))) | \
-            (Lemmas("how many") + Lemma("rooms") + Pos("IN") + Hotel() + Lemma("hotel") + Question(Pos(".")))   
+      regex = (Lemmas("how many") + Lemma("rooms") + Pos("IN") + Hotel() + Question(Lemma("hotel")) + Question(Pos(".")))
             
 Result:
 
@@ -134,7 +129,7 @@ Result:
 
 ------------------------------------------------------------------------------------------------------------------------
 
-SPARQL query for "How many restaurants in Jumeirah Beach Hotel?"
+SPARQL query for "How many restaurants in The Peninsula Hong Kong hotel?"
 
   PREFIX owl: <http://www.w3.org/2002/07/owl#>
   PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
@@ -152,20 +147,19 @@ SPARQL query for "How many restaurants in Jumeirah Beach Hotel?"
 
 Question template:
 
-  regex =   (Lemmas("how many") + Lemma("restaurant") + Pos("IN") + Hotel() + Question(Pos("."))) | \
-            (Lemmas("how many") + Lemma("restaurant") + Pos("IN") + Hotel() + Lemma("hotel") +  Question(Pos(".")))
+      regex = (Lemmas("how many") + Lemma("restaurant") + Pos("IN") + Hotel() + Question(Lemma("hotel")) + Question(Pos(".")))
     
 Result:
 
 +------------------------------+
 |               x1             |
 +==============================+
-|"20"                          |
+|"8"                           |
 +------------------------------+
 
 ------------------------------------------------------------------------------------------------------------------------
 
-SPARQL query for "who is the owner of Jumeirah Beach Hotel?"
+SPARQL query for "who is the owner of Capital Hilton?"
 
   PREFIX owl: <http://www.w3.org/2002/07/owl#>
   PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
@@ -178,29 +172,25 @@ SPARQL query for "who is the owner of Jumeirah Beach Hotel?"
   PREFIX dbpedia-owl: <http://dbpedia.org/ontology/>
   
   SELECT DISTINCT ?x2 WHERE { 
-    ?x0 rdf:type dbpedia-owl:Hotel. ?x0 rdfs:label "Jumeirah Beach Hotel"@en. 
-    ?x0 dbpedia-owl:owner ?x1. ?x1 rdfs:label ?x2. 
-    FILTER (lang(?x2) = 'en')}  
+    ?x0 rdf:type dbpedia-owl:Hotel. ?x0 rdfs:label "Capital Hilton"@en. 
+    ?x0 dbpedia-owl:owner ?x1. ?x1 foaf:name ?x2. }  
 
 Question template:
 
-  regex =   (Lemmas("who be") + Lemma("the") + Lemma("owner") + Pos("IN") + Hotel() + Question(Pos("."))) | \
-            (Lemmas("who be") + Lemma("the") + Lemma("owner") + Pos("IN") + Hotel() + Lemma("hotel") +  Question(Pos(".")))
+      regex = (Lemmas("who be") + Lemma("the") + Lemma("owner") + Pos("IN") + Hotel() + Question(Lemma("hotel")) + Question(Pos("."))) 
     
 Result:
 
 +------------------------------+
 |               x2             |
 +==============================+
-|"Jumeirah (hotel chain)"@en   |
+|"Hilton Hotels & Resorts"     |
 +------------------------------+
 
 ------------------------------------------------------------------------------------------------------------------------
 
-SPARQL query for "when was the opening of Jumeirah Beach Hotel?"
-                 "which date the Jumeirah Beach Hotel was opened?"
-                 "When did Jumeirah Beach Hotel opened?"
-
+SPARQL query for "When was the opening of Novotel Century Hong Kong hotel?"
+              
   PREFIX owl: <http://www.w3.org/2002/07/owl#>
   PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
   PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
@@ -217,24 +207,21 @@ SPARQL query for "when was the opening of Jumeirah Beach Hotel?"
 
 Question template:
 
-  regex =   (Lemmas("when be") + Lemma("the") + Lemma("open") + Pos("IN") + Hotel() + Question(Pos("."))) | \
-            (Lemmas("when be") + Lemma("the") + Lemma("open") + Pos("IN") + Hotel() + Lemma("hotel") +  Question(Pos("."))) | \
-            (Lemma("which") + Lemma("date") + Lemma("the") + Hotel() + Lemma("be") + Lemma("open") + Question(Pos("."))) | \
-            (Lemma("which") + Lemma("date") + Lemma("the") + Hotel() + Lemma("hotel") + Lemma("be") + Lemma("open") + Question(Pos("."))) | \
-            (Lemmas("when do") + Hotel() + Lemma("open") + Question(Pos("."))) | \
-            (Lemmas("when do") + Hotel() + Lemma("hotel") + Lemma("open") + Question(Pos(".")))
-
+  regex =   (Lemmas("when be") + Lemma("the") + Lemma("open") + Pos("IN") + Hotel() + Question(Lemma("hotel")) + Question(Pos("."))) | \
+            (Lemma("which") + Lemma("date") + Lemma("the") + Hotel() + Question(Lemma("hotel")) + Lemma("be") + Lemma("open") + Question(Pos("."))) | \
+            (Lemmas("when do") + Hotel() + Question(Lemma("hotel")) + Lemma("open") + Question(Pos("."))) 
+    
 Result:
 
 +------------------------------+
 |               x1             |
 +==============================+
-|"1997"                        |
+|"1991"                        |
 +------------------------------+
 
 ------------------------------------------------------------------------------------------------------------------------
 
-SPARQL query for "how many floors in Jumeirah Beach Hotel?"
+SPARQL query for "How many floors in The Peninsula New York hotel?"
                
   PREFIX owl: <http://www.w3.org/2002/07/owl#>
   PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
@@ -252,22 +239,20 @@ SPARQL query for "how many floors in Jumeirah Beach Hotel?"
 
 Question template:
 
-  regex =   (Lemmas("how many") +  Lemma("floor") + Pos("IN") + Hotel() + Question(Pos("."))) | \
-            (Lemmas("how many") +  Lemma("floor") + Pos("IN") + Hotel() + Lemma("hotel") +  Question(Pos(".")))
+      regex = (Lemmas("how many") +  Lemma("floor") + Pos("IN") + Hotel() + Question(Lemma("hotel")) + Question(Pos(".")))
 
 Result:
 
 +------------------------------+
 |               x1             |
 +==============================+
-|"26"                          |
+|"23"                          |
 +------------------------------+
 
 ------------------------------------------------------------------------------------------------------------------------
 
 SPARQL query for "what is the link of Jumeirah Beach Hotel?"
-                 "what is the website of Jumeirah Beach Hotel?"
-               
+                              
   PREFIX owl: <http://www.w3.org/2002/07/owl#>
   PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
   PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
@@ -284,8 +269,8 @@ SPARQL query for "what is the link of Jumeirah Beach Hotel?"
 
 Question template:
 
-  regex =   (Lemmas("what be") +  Lemma("the") + (Lemma("link") | Lemma("website")) + Pos("IN") + Hotel() + Question(Pos("."))) | \
-            (Lemmas("what be") +  Lemma("the") + (Lemma("link") | Lemma("website")) + Pos("IN") + Hotel() + Lemma("hotel") + Question(Pos(".")))
+  regex =   (Lemmas("what be") +  Lemma("the") + (Lemma("link") | Lemma("website")) + Pos("IN") + Thing() + Question(Pos("."))) | \
+            (Lemmas("what be") +  Lemma("the") + (Lemma("link") | Lemma("website")) + Pos("IN") + Thing() + Lemma("hotel") + Question(Pos(".")))
     
 Result:
 

@@ -37,6 +37,7 @@ class Movie(Particle):
     
 class ChildrenOfQuestion(QuestionTemplate):
     """
+    Regex for questions about the number of kids an actor have
     Ex: "How many kids did Mel Gibson have?"
         "How many children does Tom Hanks have?"
     """
@@ -50,6 +51,7 @@ class ChildrenOfQuestion(QuestionTemplate):
 
 class SpouseOfQuestion(QuestionTemplate):
     """
+    Regex for questions about who is the spouse of an actor
     Ex: "who is Tom Hanks married to?"
         "who is Sandra Bullock married to?"
     """
@@ -63,6 +65,7 @@ class SpouseOfQuestion(QuestionTemplate):
     
 class ActiveYearsOfQuestion(QuestionTemplate):
     """
+    Regex for questions about when an actor start acting
     Ex: "when did Tom Cruise start acting?"
         "when did Jennifer Aniston first start acting?"
         "how long has Tom Hanks been acting?"
@@ -79,6 +82,7 @@ class ActiveYearsOfQuestion(QuestionTemplate):
     
 class MoviesByProducerQuestion(QuestionTemplate):
     """
+    Regex for questions to list all movies an actor produced 
     Ex: "List films produced by Brad Pitt"
         "Movies produced by Tom Cruise"
         "which movies did Mel Gibson produced?"
@@ -96,6 +100,7 @@ class MoviesByProducerQuestion(QuestionTemplate):
 
 class ProducerOfQuestion(QuestionTemplate):
     """
+    Regex for questions about who produce a movie
     Ex: "Who is the producer of Cast Away?"
         "Who produce Vanilla Sky?"
     """
@@ -112,6 +117,7 @@ class ProducerOfQuestion(QuestionTemplate):
     
 class WriterByQuestion(QuestionTemplate):
     """
+    Regex for questions listing the movies written by an actor
     Ex: "list movies written by Tom Hanks"
         "which movies did Sandra Bullock wrote?"
         "what films did Mel Gibson wrote?"
@@ -130,6 +136,7 @@ class WriterByQuestion(QuestionTemplate):
 
 class WriterOfQuestion(QuestionTemplate):
     """
+    Regex for questions about who wrote a movie
     Ex: "Who is the writer of Get the Gringo?"
         "Who wrote Making Sandwiches?"
     """
@@ -146,6 +153,7 @@ class WriterOfQuestion(QuestionTemplate):
 
 class GuestByQuestion(QuestionTemplate):
     """
+    Regex for questions about which movies an actor appears as guest star
     Ex: "list movies that Brad Pitt appear as guest star"
         "Films that Jennifer Aniston appears in as guest?"
     """
@@ -161,6 +169,7 @@ class GuestByQuestion(QuestionTemplate):
     
 class ShowGuestByQuestion(QuestionTemplate):
     """
+    Regex for questions about which shows an actor appears in  
     Ex: "list shows that Tom Hanks appears in?"
         "Shows that invites Tom Cruise?"
         "Talk shows that Sandra Bullock appears in"

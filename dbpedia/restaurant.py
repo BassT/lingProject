@@ -28,6 +28,7 @@ class Restaurant(Particle):
     
 class ListRestaurantInCityQuestion(QuestionTemplate):
     """
+    Regex for questions about listing all restaurants in a city
     Ex: "list all restaurants in New York City?"
         "Restaurants in London?  
     """
@@ -44,6 +45,7 @@ class ListRestaurantInCityQuestion(QuestionTemplate):
 
 class TypeOfFoodQuestion(QuestionTemplate):
     """
+    Regex for questions about the type of food a restaurant serve
     Ex: "What type of food does Oyster Bar serve?"
         "What kind of food does Beigel Bake restaurant have?"  
     """
@@ -58,6 +60,7 @@ class TypeOfFoodQuestion(QuestionTemplate):
 
 class AddressOfQuestion(QuestionTemplate):
     """
+    Regex for questions asking about the address of a restaurant
     Ex: "What is the address of Square Boy restaurant?"
         "where is Brasserie Julien located?"  
     """
@@ -73,6 +76,7 @@ class AddressOfQuestion(QuestionTemplate):
     
 class DressOfQuestion(QuestionTemplate):
     """
+    Regex for questions about the dress code in a restaurant
     Ex: "What is the dress code in The Ivy restaurant?"
         "What can I wear at the Oyster Bar?" 
         "What should you wear at 21 Club restaurant?"
@@ -90,6 +94,7 @@ class DressOfQuestion(QuestionTemplate):
    
 class ChefOfQuestion(QuestionTemplate):
     """
+    Regex for questions asking about the head chef of a restaurant
     Ex: "who is the chef of The Ivy?"
         "who is the head chef of 21 Club restaurant?"
     """
