@@ -6,7 +6,7 @@ from dbpedia.dsl import HasKeyword
 """ Company related regular expressions """
 
 from refo import Group
-from dsl import IsCompany, OwnedBy, LabelOf
+from dsl import IsCompany, OwnedBy, LabelOf, NameOf
 from quepy.parsing import Lemma, Pos, QuestionTemplate, Token, Particle
 
 class OwnedByQuestion(QuestionTemplate):
@@ -21,5 +21,5 @@ class OwnedByQuestion(QuestionTemplate):
 		name = match.company.tokens
 		company = IsCompany() + HasKeyword(name)
 		ownedCompanies = OwnedBy(company)
-		label = LabelOf(ownedCompanies)
+		label = NameOf(ownedCompanies)
 		return label, "enum"
