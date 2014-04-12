@@ -65,7 +65,7 @@ def question(q):
    
     except:
          yield u"<p>DBpedia is now unavailable, please try again after a few mintues</p?>"
-
+        
 @bottle.post("/result")
 def result():
     q = request.forms.get('input')
