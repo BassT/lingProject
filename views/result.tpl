@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Final project CSE 6339, 2014</title>
+    <title>Natural Language Interface for DBpedia</title>
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootswatch/3.1.1/cerulean/bootstrap.min.css">
@@ -18,21 +18,51 @@
   </head>
   <body>
     <div class="container">
-    	<h1>Natural Language Interface for Internet Search Engines</h1>
+    	<h1>Natural Language Interface for DBpedia</h1>
     	<div class="row">
     		<div class="col-md-12">
+            %if error is not None:
+              <div class="panel panel-danger">
+                <div class="panel-heading">
+                  <h3 class="panel-title">Error:</h3>
+                </div>
+                <div class="panel-body">
+                  {{ error }}
+                </div>
+              </div>
+            %end
+             
+          <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title">SPARQL query</h3>
+            </div>
+            <div class="panel-body">
+              %if query is not None:
+                {{ query }}
+              %else:
+                No query
+              %end
+            </div>
+          </div> 
+
     		     <div class="panel panel-info">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Results</h3>
-                        </div>
-                        <div class="panel-body">
-                           <table class="table">
-                               %for result in results["results"]["bindings"]:
-                                <tr class="active"><td>{{ result[target]["value"] }}</td></tr>
-                                %end
-                           </table>
-                        </div>
-               </div>
+                <div class="panel-heading">
+                    <h3 class="panel-title">Results</h3>
+                </div>
+                <div class="panel-body">
+                      %try:
+                        <table class="table">
+                        %for result in results["results"]["bindings"]:
+                          <tr class="active"><td>{{ result[target]["value"] }}</td></tr>
+                        %end
+                        </table>
+                      %except:
+                        No results
+                      %end
+                </div>
+              </div> 
+            
+            
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>

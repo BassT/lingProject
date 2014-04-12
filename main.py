@@ -77,7 +77,7 @@ def result():
         query_type = metadata
         metadata = None
     if query is None:
-        return template("result", error=u"<p>Query not generated :(</p>") 
+        return template("result", error=u"Query not generated :(", query=None) 
  
     if target.startswith("?"):
         target = target[1:]
@@ -85,8 +85,10 @@ def result():
         sparql.setQuery(query)
         sparql.setReturnFormat(JSON)
         results = sparql.query().convert()
+        if not results["results"]["bindings"]:
+            return template("result", error=u"No answer found :(", query=query)
     
-    return template("result", results=results, target=target)
+    return template("result", results=results, target=target, query=query, error=None)
         
 #   @get("/tryqustion") # or @route('/login')
 @bottle.route("/tryquestion")
