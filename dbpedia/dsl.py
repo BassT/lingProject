@@ -242,9 +242,6 @@ class IngredientOf(FixedRelation):
 class IsHotel(FixedType):
     fixedtype = "dbpedia-owl:Hotel"
     
-class HotelNameIs(FixedRelation):
-    relation = "dbpedia-owl:hotelName"  
-    
 class NumOfRooms(FixedRelation):
     relation = "dbpedia-owl:numberOfRooms"  
     reverse = True
