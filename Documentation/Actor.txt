@@ -3,8 +3,7 @@ Domain Actor
 ============
 
 SPARQL query for "How many kids did Mel Gibson have?"
-                 "How many children does Tom Hanks have?"
-
+               
   PREFIX owl: <http://www.w3.org/2002/07/owl#>
   PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
   PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
@@ -50,8 +49,7 @@ Result:
 ------------------------------------------------------------------------------------------------------------------------
 
 SPARQL query for "who is Tom Hanks married to?"
-                 "who is Sandra Bullock married to?" 
-
+                
   PREFIX owl: <http://www.w3.org/2002/07/owl#>
   PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
   PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
@@ -82,10 +80,7 @@ Result:
 ------------------------------------------------------------------------------------------------------------------------
 
 SPARQL query for "when did Tom Cruise start acting?"
-                 "when did Jennifer Aniston first start acting?"
-                 "how long has Tom Hanks been acting?"
-                 "how long has Mel Gibson been an actor?"
-
+              
   PREFIX owl: <http://www.w3.org/2002/07/owl#>
   PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
   PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
@@ -115,9 +110,7 @@ Result:
 ------------------------------------------------------------------------------------------------------------------------
 
 SPARQL query for "List films produced by Brad Pitt"
-                 "Movies produced by Tom Cruise"
-                 "which movies did Mel Gibson produced?"
-
+               
   PREFIX owl: <http://www.w3.org/2002/07/owl#>
   PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
   PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
@@ -175,8 +168,7 @@ Result:
 ------------------------------------------------------------------------------------------------------------------------
 
 SPARQL query for "Who is the producer of Cast Away?"
-                 "Who produce Vanilla Sky?"
-
+             
   PREFIX owl: <http://www.w3.org/2002/07/owl#>
   PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
   PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
@@ -214,10 +206,7 @@ Result:
 ------------------------------------------------------------------------------------------------------------------------
 
 SPARQL query for "list movies written by Tom Hanks"
-                 "which movies did Sandra Bullock wrote?"
-                 "what films did Mel Gibson wrote?"
-                 "Films written by Tom Hanks"
-
+                
   PREFIX owl: <http://www.w3.org/2002/07/owl#>
   PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
   PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
@@ -255,8 +244,7 @@ Result:
 ------------------------------------------------------------------------------------------------------------------------
 
 SPARQL query for "Who is the writer of Get the Gringo?"
-                 "Who wrote Making Sandwiches?"
-
+           
   PREFIX owl: <http://www.w3.org/2002/07/owl#>
   PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
   PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
@@ -292,8 +280,7 @@ Result:
 ------------------------------------------------------------------------------------------------------------------------
 
 SPARQL query for "list movies that Brad Pitt appear as guest star"
-                 "Films that Jennifer Aniston appears in as guest?"
-
+                
   PREFIX owl: <http://www.w3.org/2002/07/owl#>
   PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
   PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
@@ -327,8 +314,6 @@ Result:
 ------------------------------------------------------------------------------------------------------------------------
 
 SPARQL query for "list shows that Tom Hanks appears in?"
-                 "Shows that invites Tom Cruise?"
-                 "Talk shows that Sandra Bullock appears in"
 
   PREFIX owl: <http://www.w3.org/2002/07/owl#>
   PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>

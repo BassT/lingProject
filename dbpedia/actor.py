@@ -20,11 +20,9 @@ class Actor(Particle):
     
     regex = Plus(Pos("NN") | Pos("NNS") | Pos("NNP") | Pos("NNPS"))
    
-
     def interpret(self, match):
         name = match.words.tokens
-        print name
-        return IsPerson() + HasKeyword(name)
+        return IsPerson() + HasKeyword(name)   
    
    
 class Movie(Particle):
@@ -32,7 +30,6 @@ class Movie(Particle):
 
     def interpret(self, match):
         MovieName = match.words.tokens
-        print MovieName
         return IsMovie() + HasKeyword(MovieName)
     
 class ChildrenOfQuestion(QuestionTemplate):
@@ -106,7 +103,7 @@ class ProducerOfQuestion(QuestionTemplate):
     """
 
     regex = ((Lemmas("who be") + Pos("DT") + Lemma("producer") +
-             Pos("IN") + Movie()) |
+             Pos("IN") + Movie()) | 
              (Lemma("who") + Lemma("produce") + Movie())) + \
             Question(Pos("."))
 
@@ -147,14 +144,14 @@ class WriterOfQuestion(QuestionTemplate):
             Question(Pos("."))
 
     def interpret(self, match):
-        wrtier = WriterOf(match.movie)
-        return NameOf(wrtier), "enum"
+        writer = WriterOf(match.movie)
+        return NameOf(writer), "enum"
     
 
 class GuestByQuestion(QuestionTemplate):
     """
     Regex for questions about which movies an actor appears as guest star
-    Ex: "list movies that Brad Pitt appear as guest star"
+    Ex: "list movies that Brad Pitt appears as guest star"
         "Films that Jennifer Aniston appears in as guest?"
     """
 
@@ -163,8 +160,8 @@ class GuestByQuestion(QuestionTemplate):
             Pos("IN") + Question(Pos("IN")) + Lemma("guest") + Question(Lemma("star")) + Question(Pos("."))) 
            
     def interpret(self, match):
-        show_name = GuestBy(match.actor)
-        return NameOf(show_name), "enum"
+        film_name = GuestBy(match.actor)
+        return NameOf(film_name), "enum"
     
     
 class ShowGuestByQuestion(QuestionTemplate):
