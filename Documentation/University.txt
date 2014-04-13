@@ -3,8 +3,7 @@ Domain University
 =================
 
 SPARQL query for "list all universities?"
-                 "list all universities in dbpedia?"
-
+              
   PREFIX owl: <http://www.w3.org/2002/07/owl#>
   PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
   PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
@@ -15,9 +14,8 @@ SPARQL query for "list all universities?"
   PREFIX dbpprop: <http://dbpedia.org/property/>
   PREFIX dbpedia-owl: <http://dbpedia.org/ontology/>
   
-  SELECT DISTINCT ?x1 WHERE {
-    ?x0 rdf:type dbpedia-owl:University. ?x0 rdfs:label ?x1.
-    FILTER (lang(?x1) = 'en')} 
+  SELECT DISTINCT ?x1 WHERE { 
+    ?x0 rdf:type dbpedia-owl:University. ?x0 foaf:name ?x1. } 
 
 Question template:
 
@@ -29,48 +27,43 @@ Result:
 +----------------------------------------------+
 |                     x1                       |
 +==============================================+
-|"York University"@en                          |
+|"York University"                             |
 +----------------------------------------------+
-|"Yorkville University"@en                     |
+|"Yorkville University"                        |
 +----------------------------------------------+
-|"Academy of Performing Arts in Bratislava"@en |   
+|"Academy of Performing Arts in Bratislava"    |   
 +----------------------------------------------+
-|"Akita International University"@en           |
+|"Akita International University"              |
 +----------------------------------------------+
-|"Altai State Academy of Education"@en         |
+|"Altai State Academy of Education"            |
 +----------------------------------------------+
-|"American University"@en                      |
+|"American University"                         |
 +----------------------------------------------+
-|"American University of Beirut"@en            |
+|"American University of Beirut"               |
 +----------------------------------------------+
-|"Anglia Ruskin University"@en                 |
+|"Anglia Ruskin University"                    |
 +----------------------------------------------+
-|"Babson College"@en                           |
+|"Babson College"                              |
 +----------------------------------------------+
-|"Bard College at Simon's Rock"@en             |
+|"First Nations University of Canada"          |
 +----------------------------------------------+
-|"Beijing Language and Culture University"@en  |
+|"Beijing Language and Culture University"     |
 +----------------------------------------------+
-|"Beit Berl"@en                                |
+|"Beit Berl"                                   |
 +----------------------------------------------+
-|"Berea College"@en                            |
+|"Berea College"                               |
 +----------------------------------------------+
-|"Berlin School of Economics and Law"@en       |
+|"Berlin School of Economics and Law"          |
 +----------------------------------------------+
-|"Black Mountain College"@en                   |
+|"Black Mountain College"                      |
 +----------------------------------------------+
-|"Bocconi University"@en                       |
+|"Bocconi University"                          |
 +----------------------------------------------+
 
 ------------------------------------------------------------------------------------------------------------------------
 
 SPARQL query for "How many postgraduate students in York University?"
-                 "How many post grad students in University of Toronto?"
-                 "How many post graduate students in University of Toronto?"
-                 "Number of postgraduate students in York University?"
-                 "Number of post grad students in Harvard University?"
-                 "Number of post graduate students in Harvard University?"  
-
+             
   PREFIX owl: <http://www.w3.org/2002/07/owl#>
   PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
   PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
@@ -101,12 +94,7 @@ Result:
 ------------------------------------------------------------------------------------------------------------------------
 
 SPARQL query for "How many undergraduate students in York University?"
-                 "How many under grad students in University of Toronto?"
-                 "How many under graduate students in University of Toronto?"
-                 "Number of undergraduate students in York University?"
-                 "Number of under grad students in McGill University?"
-                 "Number of under graduate students in McGill University?"
-
+              
   PREFIX owl: <http://www.w3.org/2002/07/owl#>
   PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
   PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
@@ -137,10 +125,7 @@ Result:
 ------------------------------------------------------------------------------------------------------------------------
 
 SPARQL query for "How many staff in York University?"
-                 "How many staff working in McGill University?"
-                 "Number of staff in University of Toronto?"
-                 "Number of staff working in University of Toronto?"
-
+               
   PREFIX owl: <http://www.w3.org/2002/07/owl#>
   PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
   PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
@@ -171,10 +156,7 @@ Result:
 ------------------------------------------------------------------------------------------------------------------------
 
 SPARQL query for "What is York University colors?"
-                 "What is York University color?"
-                 "What is the colors of University of Toronto?"
-                 "What is the color of University of Toronto?"
-
+               
   PREFIX owl: <http://www.w3.org/2002/07/owl#>
   PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
   PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
@@ -205,8 +187,7 @@ Result:
 ------------------------------------------------------------------------------------------------------------------------
 
 SPARQL query for "What is the motto of York University?"
-                 "What is University of Toronto motto?"
-               
+                          
   PREFIX owl: <http://www.w3.org/2002/07/owl#>
   PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
   PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
@@ -237,10 +218,7 @@ Result:
 ------------------------------------------------------------------------------------------------------------------------
 
 SPARQL query for "when was the establishment of McGill University?"
-                 "on which date York University was established?"
-                 "which date Harvard University was established?"
-                 "When did University of Toronto established?"
-               
+                             
   PREFIX owl: <http://www.w3.org/2002/07/owl#>
   PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
   PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
@@ -272,8 +250,7 @@ Result:
 ------------------------------------------------------------------------------------------------------------------------
 
 SPARQL query for "What is the nickname of York University?"
-                 "What is University of Toronto nickname?"
-               
+             
   PREFIX owl: <http://www.w3.org/2002/07/owl#>
   PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
   PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
@@ -304,10 +281,7 @@ Result:
 ------------------------------------------------------------------------------------------------------------------------
 
 SPARQL query for "What does York University own?"
-                 "What does University of Toronto own?"
-                 "List some properties owned by Harvard University?"
-                 "Some properties owned by McGill University"
-               
+                              
   PREFIX owl: <http://www.w3.org/2002/07/owl#>
   PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
   PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
@@ -338,3 +312,45 @@ Result:
 +------------------------------------------+
 |"Pan Am and Parapan Am Athletics Stadium" |
 +------------------------------------------+
+
+------------------------------------------------------------------------------------------------------------------------
+
+SPARQL query for "what is the website of York University?"
+                              
+  PREFIX owl: <http://www.w3.org/2002/07/owl#>
+  PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+  PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+  PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+  PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+  PREFIX quepy: <http://www.machinalis.com/quepy#>
+  PREFIX dbpedia: <http://dbpedia.org/ontology/>
+  PREFIX dbpprop: <http://dbpedia.org/property/>
+  PREFIX dbpedia-owl: <http://dbpedia.org/ontology/>
+  
+  SELECT DISTINCT ?x1 WHERE { 
+    ?x0 rdfs:label "York University"@en. ?x0 dbpedia-owl:wikiPageExternalLink ?x1. } 
+
+Question template:
+
+  regex =   (Lemmas("what be") +  Lemma("the") + (Lemma("link") | Lemma("website")) + Pos("IN") + Thing() + Question(Pos("."))) | \
+            (Lemmas("what be") +  Lemma("the") + (Lemma("link") | Lemma("website")) + Pos("IN") + Thing() + Lemma("hotel") + Question(Pos(".")))
+    
+Result:
+
++---------------------------------------------------------------------------------------------------------------------------------+
+|                                                           x1                                                                    |
++=================================================================================================================================+
+|"http://www.yufa.org/"                                                                                                           |
++---------------------------------------------------------------------------------------------------------------------------------+
+|"http://www.youtube.com/user/YorkUniversity"                                                                                     |
++---------------------------------------------------------------------------------------------------------------------------------+
+|"http://www.yorku.ca/"                                                                                                           |   
++---------------------------------------------------------------------------------------------------------------------------------+
+|"http://www.yorku.ca/laps/"                                                                                                      |
++---------------------------------------------------------------------------------------------------------------------------------+
+|"http://www.imaginewithus.ca/"                                                                                                   |
++---------------------------------------------------------------------------------------------------------------------------------+
+|"http://www.yorku.ca/scld/organizations/origanizations.php?view=549&key=&alpha=&clubsearch=Search&category=Religious&type=club"  |                      |
++---------------------------------------------------------------------------------------------------------------------------------+
+|"http://www.osgoode.yorku.ca/faculty/Mosher_Janet.html"                                                                          |
++---------------------------------------------------------------------------------------------------------------------------------+
