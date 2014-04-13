@@ -20,10 +20,8 @@ class Language(Particle):
     
     regex = Plus(Pos("JJ") | Pos("NN") | Pos("NNP"))
    
-
     def interpret(self, match):
         name = match.words.tokens
-        print name
         return IsLanguage() + HasKeyword(name)
    
     
@@ -68,7 +66,7 @@ class SpokenInQuestion(QuestionTemplate):
     
     regex = (Lemmas("where be")  + Language() + Lemma("spoken") + Question(Pos("."))) | \
         (Question(Lemma("list")) + Pos("IN") + Lemma("country") +  (Lemma("speaks") | Lemma("speak")) + Language() + Question(Pos("."))) | \
-        (Lemma("countries") + Question(Lemma("that")) + (Lemma("speaks") | Lemma("speak")) + Language() + Question(Pos("."))  )    
+        (Lemma("countries") + Question(Lemma("that")) + (Lemma("speaks") | Lemma("speak")) + Language() + Question(Pos(".")))    
      
     def interpret(self, match):
         SpokenInLocations = SpokenIn(match.language)
