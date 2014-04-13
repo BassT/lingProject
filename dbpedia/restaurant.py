@@ -22,7 +22,6 @@ class Restaurant(Particle):
    
     def interpret(self, match):
         name = match.words.tokens
-        print name
         return IsRestaurant() + HasKeyword(name)
     
     
@@ -30,7 +29,7 @@ class ListRestaurantInCityQuestion(QuestionTemplate):
     """
     Regex for questions about listing all restaurants in a city
     Ex: "list all restaurants in New York City?"
-        "Restaurants in London?  
+        "Restaurants in London?"  
     """
     
     city = Group(Plus(Pos("NN") | Pos("NNS") | Pos("NNP") | Pos("NNPS")), "city")
