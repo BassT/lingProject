@@ -8,7 +8,7 @@ __author__="Fatima"
 __date__ ="$4-Apr-2014 11:50:42 PM$"
 
 """
-New Basic questions that are not supproted in basic.py
+BasicQuestions related regex
 """
 
 from refo import Question, Plus
@@ -31,6 +31,7 @@ class WhatIs(QuestionTemplate):
         "What is University of Toronot?"
         "What is Jumeirah Beach Hotel?"
         "What is Crowne Plaza?"
+        "What is 21 Club?"
     """
 
     regex = Lemma("what") + Lemma("be") + Question(Pos("DT")) + Thing() + Question(Pos("."))
@@ -47,10 +48,11 @@ class LinkQuestion(QuestionTemplate):
         "What is the website of InterContinental Hong Kong?"
         "what is the link of York University?"
         "what is the website of University of Toronto?"
+        "what is the website of 21 Club?"
+        "what is the link of The Ivy?"
     """
         
-    regex = (Lemmas("what be") +  Lemma("the") + (Lemma("link") | Lemma("website")) + Pos("IN") + Thing() + Question(Pos("."))) | \
-        (Lemmas("what be") +  Lemma("the") + (Lemma("link") | Lemma("website")) + Pos("IN") + Thing() + Lemma("hotel") + Question(Pos(".")))
+    regex = (Lemmas("what be") +  Lemma("the") + (Lemma("link") | Lemma("website")) + Pos("IN") + Thing() + Question(Pos("."))) 
     
     def interpret(self, match):
         Link = ExternalLinkOf(match.thing)
