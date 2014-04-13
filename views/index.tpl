@@ -64,6 +64,11 @@
                         <div class="panel-body">
                             <ul>
                                 <li>Which companies are owned by Google?</li>
+                                <li>List food uses Apple as ingredient</li>
+                                <li>How many restaurants in The Peninsula Hong Kong hotel?</li>
+                                <li>How many postgraduate students in York University?</li>
+                                <li>List of countries that speaks Arabic language as an official language?</li>
+                                <li>When did Tom Cruise start acting?</li>
                                 <li>List all restaurants in London</li>
                             </ul>
                         </div>
