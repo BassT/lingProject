@@ -18,7 +18,7 @@ LanguageFamilyOf, OfficialLanguageOf, NameOf, CommonNameOf
 
 class Language(Particle):
     
-    regex = Plus(Pos("JJ") | Pos("NN") | Pos("NNP"))
+    regex = Plus(Pos("JJ") | Pos("NN") | Pos("NNP") | Pos("NNS"))
    
     def interpret(self, match):
         name = match.words.tokens
