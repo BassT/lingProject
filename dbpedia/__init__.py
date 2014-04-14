@@ -22,7 +22,7 @@ from company import *
 from species import *
 from hotel import *
 from university import *
-from NewBasic import *
+from BasicQuestions import *
 from language import *
 from actor import *
 from restaurant import *

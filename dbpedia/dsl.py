@@ -62,7 +62,6 @@ class DefinitionOf(FixedRelation):
 
 class LabelOf(FixedRelation):
     relation = "rdfs:label"
-    language = "en"
     reverse = True
 
 

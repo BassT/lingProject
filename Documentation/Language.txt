@@ -3,8 +3,7 @@ Domain Language
 ===============
 
 SPARQL query for "list all languages?"
-                 "list all languages in dbpedia?"
-
+               
   PREFIX owl: <http://www.w3.org/2002/07/owl#>
   PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
   PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
@@ -65,9 +64,7 @@ Result:
 ------------------------------------------------------------------------------------------------------------------------
 
 SPARQL query for "How many people speaks English language?"
-                 "How many people speak Canadian French?"
-                 "How many people in the world can speak Arabic language?"  
-
+              
   PREFIX owl: <http://www.w3.org/2002/07/owl#>
   PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
   PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
@@ -100,9 +97,7 @@ Result:
 ------------------------------------------------------------------------------------------------------------------------
 
 SPARQL query for "Where is Thai language spoken?"
-                 "list of countries speaks Arabic language?"
-                 "Countries that speaks Japanese language?"
-
+    
   PREFIX owl: <http://www.w3.org/2002/07/owl#>
   PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
   PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
@@ -138,9 +133,7 @@ Result:
 ------------------------------------------------------------------------------------------------------------------------
 
 SPARQL query for "What language family does Thai language belong to?"
-                 "What language family does Arabic language part of?"
-                 "What is the language family of English language?"
-
+         
   PREFIX owl: <http://www.w3.org/2002/07/owl#>
   PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
   PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
@@ -174,9 +167,7 @@ Result:
 ------------------------------------------------------------------------------------------------------------------------
 
 SPARQL query for "list of countries that speaks Arabic language as an official language?"
-                 "where is Thai language spoken as an official language?"
-                 "Countries speaks English language as official language?"
-
+                
   PREFIX owl: <http://www.w3.org/2002/07/owl#>
   PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
   PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>

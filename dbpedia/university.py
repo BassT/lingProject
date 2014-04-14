@@ -14,7 +14,7 @@ from refo import Question, Plus
 from quepy.dsl import HasKeyword
 from quepy.parsing import Lemma, Lemmas, Pos, QuestionTemplate, Particle
 from dbpedia.dsl import IsUniversity, GradStudentOf, UnderGradStudentOf, StaffOf, \
-    ColorOf, MottoOf, EstablishOf, NicknameOf, UniversityOwnerOf, LabelOf, NameOf
+    ColorOf, MottoOf, EstablishOf, NicknameOf, UniversityOwnerOf, NameOf
 
 
 class University(Particle):
@@ -30,7 +30,9 @@ class ListUniversitiesQuestion(QuestionTemplate):
     """
     Regex for questions about listing all universities in dbpedia
     Ex: "list all universities?"
+        "all universities"
         "list all universities in dbpedia?"
+        "all universities in dbpedia?"
     """
     
     regex = (Question(Lemma("list")) + Lemma("all") + Lemma("university") + Question(Pos("."))) | \
@@ -38,7 +40,7 @@ class ListUniversitiesQuestion(QuestionTemplate):
     
     def interpret(self, match):
         University = IsUniversity()
-        return LabelOf(University), "enum"
+        return NameOf(University), "enum"
 
 
 class GradStudentQuestion(QuestionTemplate):
