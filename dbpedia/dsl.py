@@ -15,6 +15,7 @@ from quepy.dsl import FixedType, HasKeyword, FixedRelation, FixedDataRelation
 
 # Setup the Keywords for this application
 HasKeyword.relation = "rdfs:label"
+HasKeyword.language = "en"
 
 
 class IsPerson(FixedType):
