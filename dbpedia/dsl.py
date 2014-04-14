@@ -15,7 +15,6 @@ from quepy.dsl import FixedType, HasKeyword, FixedRelation, FixedDataRelation
 
 # Setup the Keywords for this application
 HasKeyword.relation = "rdfs:label"
-HasKeyword.language = "en"
 
 
 class IsPerson(FixedType):
@@ -204,6 +203,25 @@ class IsCompany(FixedType):
     
 class OwnedBy(FixedRelation):
     relation = "dbpedia-owl:owningCompany"
+    
+class EquityOf(FixedRelation):
+    relation = "dbpedia-owl:equity"
+    reverse = True
+    
+class RevenueOf(FixedRelation):
+    relation = "dbpedia-owl:revenue"
+    reverse = True
+
+class AssetsOf(FixedRelation):
+    relation = "dbpedia-owl:assets"
+    reverse = True
+    
+class IndustryOf(FixedRelation):
+    relation = "dbpedia-owl:industry"
+    reverse = True
+    
+class DevelopedBy(FixedRelation):
+    relation = "dbpedia-owl:developer"
 
 # ============================================ #
 #    Domain specific language for Species      #
